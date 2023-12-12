@@ -1,0 +1,29 @@
+﻿CREATE OR REPLACE REST WEBSERVICE bv_address_copy
+    CONNECTION (
+        CHUNKSIZE = 1000
+        CHUNKTIMEOUT = 1000
+        QUERYTIMEOUT = 900000
+        POOLENABLED = true
+        POOLINITSIZE = 0
+        POOLMAXACTIVE = 30
+    )
+    DEFAULTREPRESENTATION = HTML
+    SUPPORTEDREPRESENTATIONS (HTML, XML, JSON)
+    RESOURCES (
+        VIEW bv_address_copy FIELDS (
+            addressid : 'int', 
+            addressline1 : 'text', 
+            addressline2 : 'text', 
+            city : 'text', 
+            stateprovince : 'text', 
+            countryregion : 'text', 
+            postalcode : 'text', 
+            rowguid : 'text', 
+            modifieddate : 'timestamp'
+        )
+    )
+    OPTIONS ( NULLVALUESASEMPTYXMLELEMENTS = false
+        ALLOW_CORS_ORIGINS (*) DISABLED
+        PROCESS_FUNCTIONS_IN_SELECT_PARAMETER = true ) 
+    OPENAPI2 ( API_VERSION = '1.0.0' ) ;
+

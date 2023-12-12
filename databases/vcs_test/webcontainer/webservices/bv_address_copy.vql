@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WEBSERVICE bv_address_copy;
+
+DEPLOY WEBSERVICE bv_address_copy LOGIN = '${databases.vcs_test.webcontainer.webservices.bv_address_copy.LOGIN}' PASSWORD = '${databases.vcs_test.webcontainer.webservices.bv_address_copy.PASSWORD}' ${databases.vcs_test.webcontainer.webservices.bv_address_copy.PASSWORD.ENCRYPTED};
+
