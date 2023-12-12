@@ -1,5 +1,0 @@
-﻿CREATE OR REPLACE DATABASE denodo_poc 'Denodo POC database';
-
-ALTER DATABASE denodo_poc
-  CHARSET DEFAULT;
-

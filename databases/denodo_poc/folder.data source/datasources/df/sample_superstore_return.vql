@@ -1,8 +1,0 @@
-﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
-CREATE OR REPLACE DATASOURCE DF sample_superstore_return
-    FOLDER = '/data source'
-    ROUTE LOCAL 'LocalConnection' '${databases.denodo_poc.folder.data source.datasources.df.sample_superstore_return.ROUTE.LOCAL.PATH}'
-    COLUMNDELIMITER = ','
-    ENDOFLINEDELIMITER = '\n'
-    HEADER = TRUE;
-
