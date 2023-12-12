@@ -1,0 +1,39 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC monitor_configuration
+    FOLDER = '/data source'
+    DATASOURCENAME=ds_denodo_sql_server_azure
+    CATALOGNAME='${databases.denodo_poc.folder.data source.views.jdbc.monitor_configuration.CATALOGNAME}' ESCAPE
+    SCHEMANAME='${databases.denodo_poc.folder.data source.views.jdbc.monitor_configuration.SCHEMANAME}' 
+    RELATIONNAME='monitor_configuration' 
+    OUTPUTSCHEMA (
+        autoincrementid = 'autoincrementid' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='-5', sourcetypename='bigint identity')  NOT NULL SORTABLE IS_AUTOINCREMENT,
+        name = 'name' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  NOT NULL SORTABLE,
+        value = 'value' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  ESCAPE NOT NULL SORTABLE,
+        lastupdatetime = 'lastupdatetime' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime2')  NOT NULL SORTABLE
+    )
+    CONSTRAINT 'PK__monitor___A8AA229645B0A1A3' PRIMARY KEY ( 'autoincrementid' )
+    INDEX 'PK__monitor___A8AA229645B0A1A3' CLUSTER UNIQUE PRIMARY ( 'autoincrementid' );
+
+CREATE OR REPLACE TABLE bv_monitor_configuration I18N us_pst (
+        autoincrementid:long (notnull, autoincrement, sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19'),
+        name:text (notnull, sourcetypeid = '12', sourcetypesize = '100'),
+        value:text (notnull, sourcetypeid = '12', sourcetypesize = '100'),
+        lastupdatetime:timestamp (notnull, sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23')
+    )
+    FOLDER = '/data source'
+    CONSTRAINT 'PK__monitor___A8AA229645B0A1A3' PRIMARY KEY ( 'autoincrementid' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD monitor_configuration(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD autoincrementid (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD value (any) OPT ANY
+             ADD lastupdatetime (any) OPT ANY
+        )
+        OUTPUTLIST (autoincrementid, lastupdatetime, name, value
+        )
+        WRAPPER (jdbc monitor_configuration)
+    );
+

@@ -1,0 +1,39 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC buildversion
+    FOLDER = '/data source'
+    DATASOURCENAME=ds_denodo_sql_server_azure
+    CATALOGNAME='${databases.denodo_poc.folder.data source.views.jdbc.buildversion.CATALOGNAME}' ESCAPE
+    SCHEMANAME='${databases.denodo_poc.folder.data source.views.jdbc.buildversion.SCHEMANAME}' 
+    RELATIONNAME='BuildVersion' 
+    OUTPUTSCHEMA (
+        systeminformationid = 'SystemInformationID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='tinyint identity')  NOT NULL SORTABLE IS_AUTOINCREMENT,
+        databaseversion_0 = 'Database Version' :'java.lang.String' (OPT) (sourcetypesize='25', sourcetypeid='-9', sourcetypename='nvarchar')  ESCAPE NOT NULL SORTABLE,
+        versiondate = 'VersionDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  NOT NULL SORTABLE,
+        modifieddate = 'ModifiedDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  NOT NULL SORTABLE
+    )
+    CONSTRAINT 'PK__BuildVer__35E58ECAC720B86D' PRIMARY KEY ( 'SystemInformationID' )
+    INDEX 'PK__BuildVer__35E58ECAC720B86D' CLUSTER UNIQUE PRIMARY ( 'SystemInformationID' );
+
+CREATE OR REPLACE TABLE bv_buildversion I18N us_pst (
+        systeminformationid:int (notnull, autoincrement, sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3'),
+        databaseversion_0:text (notnull, sourcetypeid = '-9', sourcetypesize = '25'),
+        versiondate:timestamp (notnull, sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
+        modifieddate:timestamp (notnull, sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23')
+    )
+    FOLDER = '/data source'
+    CONSTRAINT 'PK__BuildVer__35E58ECAC720B86D' PRIMARY KEY ( 'systeminformationid' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD buildversion(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD systeminformationid (any) OPT ANY
+             ADD databaseversion_0 (any) OPT ANY
+             ADD versiondate (any) OPT ANY
+             ADD modifieddate (any) OPT ANY
+        )
+        OUTPUTLIST (databaseversion_0, modifieddate, systeminformationid, versiondate
+        )
+        WRAPPER (jdbc buildversion)
+    );
+

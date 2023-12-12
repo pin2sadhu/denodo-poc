@@ -1,0 +1,2145 @@
+﻿CREATE OR REPLACE WRAPPER DF bn_covid_aggregated
+    FOLDER = '/base view'
+    DATASOURCENAME=covid_aggregated
+    OUTPUTSCHEMA (
+        location_key = 'location_key' (OPT),
+        date = 'date' (OPT),
+        place_id = 'place_id' (OPT),
+        wikidata_id = 'wikidata_id' (OPT),
+        datacommons_id = 'datacommons_id' (OPT),
+        country_code = 'country_code' (OPT),
+        country_name = 'country_name' (OPT),
+        iso_3166_1_alpha_2 = 'iso_3166_1_alpha_2' (OPT),
+        iso_3166_1_alpha_3 = 'iso_3166_1_alpha_3' (OPT),
+        aggregation_level = 'aggregation_level' (OPT),
+        new_confirmed = 'new_confirmed' (OPT),
+        new_deceased = 'new_deceased' (OPT),
+        cumulative_confirmed = 'cumulative_confirmed' (OPT),
+        cumulative_deceased = 'cumulative_deceased' (OPT),
+        cumulative_tested = 'cumulative_tested' (OPT),
+        new_persons_vaccinated = 'new_persons_vaccinated' (OPT),
+        cumulative_persons_vaccinated = 'cumulative_persons_vaccinated' (OPT),
+        new_persons_fully_vaccinated = 'new_persons_fully_vaccinated' (OPT),
+        cumulative_persons_fully_vaccinated = 'cumulative_persons_fully_vaccinated' (OPT),
+        new_vaccine_doses_administered = 'new_vaccine_doses_administered' (OPT),
+        cumulative_vaccine_doses_administered = 'cumulative_vaccine_doses_administered' (OPT),
+        population = 'population' (OPT),
+        population_male = 'population_male' (OPT),
+        population_female = 'population_female' (OPT),
+        population_rural = 'population_rural' (OPT),
+        population_urban = 'population_urban' (OPT),
+        population_density = 'population_density' (OPT),
+        human_development_index = 'human_development_index' (OPT),
+        population_age_00_09 = 'population_age_00_09' (OPT),
+        population_age_10_19 = 'population_age_10_19' (OPT),
+        population_age_20_29 = 'population_age_20_29' (OPT),
+        population_age_30_39 = 'population_age_30_39' (OPT),
+        population_age_40_49 = 'population_age_40_49' (OPT),
+        population_age_50_59 = 'population_age_50_59' (OPT),
+        population_age_60_69 = 'population_age_60_69' (OPT),
+        population_age_70_79 = 'population_age_70_79' (OPT),
+        population_age_80_and_older = 'population_age_80_and_older' (OPT),
+        gdp_usd = 'gdp_usd' (OPT),
+        gdp_per_capita_usd = 'gdp_per_capita_usd' (OPT),
+        openstreetmap_id = 'openstreetmap_id' (OPT),
+        latitude = 'latitude' (OPT),
+        longitude = 'longitude' (OPT),
+        area_sq_km = 'area_sq_km' (OPT),
+        smoking_prevalence = 'smoking_prevalence' (OPT),
+        diabetes_prevalence = 'diabetes_prevalence' (OPT),
+        infant_mortality_rate = 'infant_mortality_rate' (OPT),
+        nurses_per_1000 = 'nurses_per_1000' (OPT),
+        physicians_per_1000 = 'physicians_per_1000' (OPT),
+        health_expenditure_usd = 'health_expenditure_usd' (OPT),
+        out_of_pocket_health_expenditure_usd = 'out_of_pocket_health_expenditure_usd' (OPT),
+        school_closing = 'school_closing' (OPT),
+        workplace_closing = 'workplace_closing' (OPT),
+        cancel_public_events = 'cancel_public_events' (OPT),
+        restrictions_on_gatherings = 'restrictions_on_gatherings' (OPT),
+        public_transport_closing = 'public_transport_closing' (OPT),
+        stay_at_home_requirements = 'stay_at_home_requirements' (OPT),
+        restrictions_on_internal_movement = 'restrictions_on_internal_movement' (OPT),
+        international_travel_controls = 'international_travel_controls' (OPT),
+        income_support = 'income_support' (OPT),
+        debt_relief = 'debt_relief' (OPT),
+        fiscal_measures = 'fiscal_measures' (OPT),
+        international_support = 'international_support' (OPT),
+        public_information_campaigns = 'public_information_campaigns' (OPT),
+        testing_policy = 'testing_policy' (OPT),
+        contact_tracing = 'contact_tracing' (OPT),
+        emergency_investment_in_healthcare = 'emergency_investment_in_healthcare' (OPT),
+        investment_in_vaccines = 'investment_in_vaccines' (OPT),
+        facial_coverings = 'facial_coverings' (OPT),
+        vaccination_policy = 'vaccination_policy' (OPT),
+        stringency_index = 'stringency_index' (OPT),
+        average_temperature_celsius = 'average_temperature_celsius' (OPT),
+        minimum_temperature_celsius = 'minimum_temperature_celsius' (OPT),
+        maximum_temperature_celsius = 'maximum_temperature_celsius' (OPT),
+        rainfall_mm = 'rainfall_mm' (OPT),
+        snowfall_mm = 'snowfall_mm' (OPT),
+        dew_point = 'dew_point' (OPT),
+        relative_humidity = 'relative_humidity' (OPT),
+        new_tested = 'new_tested' (OPT),
+        population_largest_city = 'population_largest_city' (OPT),
+        population_clustered = 'population_clustered' (OPT),
+        human_capital_index = 'human_capital_index' (OPT),
+        area_rural_sq_km = 'area_rural_sq_km' (OPT),
+        area_urban_sq_km = 'area_urban_sq_km' (OPT),
+        life_expectancy = 'life_expectancy' (OPT),
+        adult_male_mortality_rate = 'adult_male_mortality_rate' (OPT),
+        adult_female_mortality_rate = 'adult_female_mortality_rate' (OPT),
+        pollution_mortality_rate = 'pollution_mortality_rate' (OPT),
+        comorbidity_mortality_rate = 'comorbidity_mortality_rate' (OPT),
+        mobility_retail_and_recreation = 'mobility_retail_and_recreation' (OPT),
+        mobility_grocery_and_pharmacy = 'mobility_grocery_and_pharmacy' (OPT),
+        mobility_parks = 'mobility_parks' (OPT),
+        mobility_transit_stations = 'mobility_transit_stations' (OPT),
+        mobility_workplaces = 'mobility_workplaces' (OPT),
+        mobility_residential = 'mobility_residential' (OPT),
+        hospital_beds_per_1000 = 'hospital_beds_per_1000' (OPT),
+        subregion1_code = 'subregion1_code' (OPT),
+        subregion1_name = 'subregion1_name' (OPT),
+        new_recovered = 'new_recovered' (OPT),
+        cumulative_recovered = 'cumulative_recovered' (OPT),
+        elevation_m = 'elevation_m' (OPT),
+        new_hospitalized_patients = 'new_hospitalized_patients' (OPT),
+        cumulative_hospitalized_patients = 'cumulative_hospitalized_patients' (OPT),
+        new_intensive_care_patients = 'new_intensive_care_patients' (OPT),
+        cumulative_intensive_care_patients = 'cumulative_intensive_care_patients' (OPT),
+        new_confirmed_age_0 = 'new_confirmed_age_0' (OPT),
+        new_confirmed_age_1 = 'new_confirmed_age_1' (OPT),
+        new_confirmed_age_2 = 'new_confirmed_age_2' (OPT),
+        new_confirmed_age_3 = 'new_confirmed_age_3' (OPT),
+        new_confirmed_age_4 = 'new_confirmed_age_4' (OPT),
+        new_confirmed_age_5 = 'new_confirmed_age_5' (OPT),
+        new_confirmed_age_6 = 'new_confirmed_age_6' (OPT),
+        new_confirmed_age_7 = 'new_confirmed_age_7' (OPT),
+        new_confirmed_age_8 = 'new_confirmed_age_8' (OPT),
+        new_confirmed_age_9 = 'new_confirmed_age_9' (OPT),
+        cumulative_confirmed_age_0 = 'cumulative_confirmed_age_0' (OPT),
+        cumulative_confirmed_age_1 = 'cumulative_confirmed_age_1' (OPT),
+        cumulative_confirmed_age_2 = 'cumulative_confirmed_age_2' (OPT),
+        cumulative_confirmed_age_3 = 'cumulative_confirmed_age_3' (OPT),
+        cumulative_confirmed_age_4 = 'cumulative_confirmed_age_4' (OPT),
+        cumulative_confirmed_age_5 = 'cumulative_confirmed_age_5' (OPT),
+        cumulative_confirmed_age_6 = 'cumulative_confirmed_age_6' (OPT),
+        cumulative_confirmed_age_7 = 'cumulative_confirmed_age_7' (OPT),
+        cumulative_confirmed_age_8 = 'cumulative_confirmed_age_8' (OPT),
+        cumulative_confirmed_age_9 = 'cumulative_confirmed_age_9' (OPT),
+        new_deceased_age_0 = 'new_deceased_age_0' (OPT),
+        new_deceased_age_1 = 'new_deceased_age_1' (OPT),
+        new_deceased_age_2 = 'new_deceased_age_2' (OPT),
+        new_deceased_age_3 = 'new_deceased_age_3' (OPT),
+        new_deceased_age_4 = 'new_deceased_age_4' (OPT),
+        new_deceased_age_5 = 'new_deceased_age_5' (OPT),
+        new_deceased_age_6 = 'new_deceased_age_6' (OPT),
+        new_deceased_age_7 = 'new_deceased_age_7' (OPT),
+        new_deceased_age_8 = 'new_deceased_age_8' (OPT),
+        new_deceased_age_9 = 'new_deceased_age_9' (OPT),
+        cumulative_deceased_age_0 = 'cumulative_deceased_age_0' (OPT),
+        cumulative_deceased_age_1 = 'cumulative_deceased_age_1' (OPT),
+        cumulative_deceased_age_2 = 'cumulative_deceased_age_2' (OPT),
+        cumulative_deceased_age_3 = 'cumulative_deceased_age_3' (OPT),
+        cumulative_deceased_age_4 = 'cumulative_deceased_age_4' (OPT),
+        cumulative_deceased_age_5 = 'cumulative_deceased_age_5' (OPT),
+        cumulative_deceased_age_6 = 'cumulative_deceased_age_6' (OPT),
+        cumulative_deceased_age_7 = 'cumulative_deceased_age_7' (OPT),
+        cumulative_deceased_age_8 = 'cumulative_deceased_age_8' (OPT),
+        cumulative_deceased_age_9 = 'cumulative_deceased_age_9' (OPT),
+        new_tested_age_0 = 'new_tested_age_0' (OPT),
+        new_tested_age_1 = 'new_tested_age_1' (OPT),
+        new_tested_age_2 = 'new_tested_age_2' (OPT),
+        new_tested_age_3 = 'new_tested_age_3' (OPT),
+        new_tested_age_4 = 'new_tested_age_4' (OPT),
+        new_tested_age_5 = 'new_tested_age_5' (OPT),
+        new_tested_age_6 = 'new_tested_age_6' (OPT),
+        new_tested_age_7 = 'new_tested_age_7' (OPT),
+        new_tested_age_8 = 'new_tested_age_8' (OPT),
+        new_tested_age_9 = 'new_tested_age_9' (OPT),
+        cumulative_tested_age_0 = 'cumulative_tested_age_0' (OPT),
+        cumulative_tested_age_1 = 'cumulative_tested_age_1' (OPT),
+        cumulative_tested_age_2 = 'cumulative_tested_age_2' (OPT),
+        cumulative_tested_age_3 = 'cumulative_tested_age_3' (OPT),
+        cumulative_tested_age_4 = 'cumulative_tested_age_4' (OPT),
+        cumulative_tested_age_5 = 'cumulative_tested_age_5' (OPT),
+        cumulative_tested_age_6 = 'cumulative_tested_age_6' (OPT),
+        cumulative_tested_age_7 = 'cumulative_tested_age_7' (OPT),
+        cumulative_tested_age_8 = 'cumulative_tested_age_8' (OPT),
+        cumulative_tested_age_9 = 'cumulative_tested_age_9' (OPT),
+        new_hospitalized_patients_age_0 = 'new_hospitalized_patients_age_0' (OPT),
+        new_hospitalized_patients_age_1 = 'new_hospitalized_patients_age_1' (OPT),
+        new_hospitalized_patients_age_2 = 'new_hospitalized_patients_age_2' (OPT),
+        new_hospitalized_patients_age_3 = 'new_hospitalized_patients_age_3' (OPT),
+        new_hospitalized_patients_age_4 = 'new_hospitalized_patients_age_4' (OPT),
+        new_hospitalized_patients_age_5 = 'new_hospitalized_patients_age_5' (OPT),
+        new_hospitalized_patients_age_6 = 'new_hospitalized_patients_age_6' (OPT),
+        new_hospitalized_patients_age_7 = 'new_hospitalized_patients_age_7' (OPT),
+        new_hospitalized_patients_age_8 = 'new_hospitalized_patients_age_8' (OPT),
+        new_hospitalized_patients_age_9 = 'new_hospitalized_patients_age_9' (OPT),
+        cumulative_hospitalized_patients_age_0 = 'cumulative_hospitalized_patients_age_0' (OPT),
+        cumulative_hospitalized_patients_age_1 = 'cumulative_hospitalized_patients_age_1' (OPT),
+        cumulative_hospitalized_patients_age_2 = 'cumulative_hospitalized_patients_age_2' (OPT),
+        cumulative_hospitalized_patients_age_3 = 'cumulative_hospitalized_patients_age_3' (OPT),
+        cumulative_hospitalized_patients_age_4 = 'cumulative_hospitalized_patients_age_4' (OPT),
+        cumulative_hospitalized_patients_age_5 = 'cumulative_hospitalized_patients_age_5' (OPT),
+        cumulative_hospitalized_patients_age_6 = 'cumulative_hospitalized_patients_age_6' (OPT),
+        cumulative_hospitalized_patients_age_7 = 'cumulative_hospitalized_patients_age_7' (OPT),
+        cumulative_hospitalized_patients_age_8 = 'cumulative_hospitalized_patients_age_8' (OPT),
+        cumulative_hospitalized_patients_age_9 = 'cumulative_hospitalized_patients_age_9' (OPT),
+        new_intensive_care_patients_age_0 = 'new_intensive_care_patients_age_0' (OPT),
+        new_intensive_care_patients_age_1 = 'new_intensive_care_patients_age_1' (OPT),
+        new_intensive_care_patients_age_2 = 'new_intensive_care_patients_age_2' (OPT),
+        new_intensive_care_patients_age_3 = 'new_intensive_care_patients_age_3' (OPT),
+        new_intensive_care_patients_age_4 = 'new_intensive_care_patients_age_4' (OPT),
+        new_intensive_care_patients_age_5 = 'new_intensive_care_patients_age_5' (OPT),
+        new_intensive_care_patients_age_6 = 'new_intensive_care_patients_age_6' (OPT),
+        new_intensive_care_patients_age_7 = 'new_intensive_care_patients_age_7' (OPT),
+        new_intensive_care_patients_age_8 = 'new_intensive_care_patients_age_8' (OPT),
+        new_intensive_care_patients_age_9 = 'new_intensive_care_patients_age_9' (OPT),
+        cumulative_intensive_care_patients_age_0 = 'cumulative_intensive_care_patients_age_0' (OPT),
+        cumulative_intensive_care_patients_age_1 = 'cumulative_intensive_care_patients_age_1' (OPT),
+        cumulative_intensive_care_patients_age_2 = 'cumulative_intensive_care_patients_age_2' (OPT),
+        cumulative_intensive_care_patients_age_3 = 'cumulative_intensive_care_patients_age_3' (OPT),
+        cumulative_intensive_care_patients_age_4 = 'cumulative_intensive_care_patients_age_4' (OPT),
+        cumulative_intensive_care_patients_age_5 = 'cumulative_intensive_care_patients_age_5' (OPT),
+        cumulative_intensive_care_patients_age_6 = 'cumulative_intensive_care_patients_age_6' (OPT),
+        cumulative_intensive_care_patients_age_7 = 'cumulative_intensive_care_patients_age_7' (OPT),
+        cumulative_intensive_care_patients_age_8 = 'cumulative_intensive_care_patients_age_8' (OPT),
+        cumulative_intensive_care_patients_age_9 = 'cumulative_intensive_care_patients_age_9' (OPT),
+        age_bin_0 = 'age_bin_0' (OPT),
+        age_bin_1 = 'age_bin_1' (OPT),
+        age_bin_2 = 'age_bin_2' (OPT),
+        age_bin_3 = 'age_bin_3' (OPT),
+        age_bin_4 = 'age_bin_4' (OPT),
+        age_bin_5 = 'age_bin_5' (OPT),
+        age_bin_6 = 'age_bin_6' (OPT),
+        age_bin_7 = 'age_bin_7' (OPT),
+        age_bin_8 = 'age_bin_8' (OPT),
+        age_bin_9 = 'age_bin_9' (OPT),
+        new_confirmed_male = 'new_confirmed_male' (OPT),
+        new_confirmed_female = 'new_confirmed_female' (OPT),
+        cumulative_confirmed_male = 'cumulative_confirmed_male' (OPT),
+        cumulative_confirmed_female = 'cumulative_confirmed_female' (OPT),
+        new_deceased_male = 'new_deceased_male' (OPT),
+        new_deceased_female = 'new_deceased_female' (OPT),
+        cumulative_deceased_male = 'cumulative_deceased_male' (OPT),
+        cumulative_deceased_female = 'cumulative_deceased_female' (OPT),
+        new_tested_male = 'new_tested_male' (OPT),
+        new_tested_female = 'new_tested_female' (OPT),
+        cumulative_tested_male = 'cumulative_tested_male' (OPT),
+        cumulative_tested_female = 'cumulative_tested_female' (OPT),
+        new_hospitalized_patients_male = 'new_hospitalized_patients_male' (OPT),
+        new_hospitalized_patients_female = 'new_hospitalized_patients_female' (OPT),
+        cumulative_hospitalized_patients_male = 'cumulative_hospitalized_patients_male' (OPT),
+        cumulative_hospitalized_patients_female = 'cumulative_hospitalized_patients_female' (OPT),
+        new_intensive_care_patients_male = 'new_intensive_care_patients_male' (OPT),
+        new_intensive_care_patients_female = 'new_intensive_care_patients_female' (OPT),
+        cumulative_intensive_care_patients_male = 'cumulative_intensive_care_patients_male' (OPT),
+        cumulative_intensive_care_patients_female = 'cumulative_intensive_care_patients_female' (OPT),
+        subregion2_code = 'subregion2_code' (OPT),
+        subregion2_name = 'subregion2_name' (OPT),
+        current_hospitalized_patients = 'current_hospitalized_patients' (OPT),
+        current_intensive_care_patients = 'current_intensive_care_patients' (OPT),
+        current_ventilator_patients = 'current_ventilator_patients' (OPT),
+        search_trends_abdominal_obesity = 'search_trends_abdominal_obesity' (OPT),
+        search_trends_abdominal_pain = 'search_trends_abdominal_pain' (OPT),
+        search_trends_acne = 'search_trends_acne' (OPT),
+        search_trends_actinic_keratosis = 'search_trends_actinic_keratosis' (OPT),
+        search_trends_acute_bronchitis = 'search_trends_acute_bronchitis' (OPT),
+        search_trends_adrenal_crisis = 'search_trends_adrenal_crisis' (OPT),
+        search_trends_ageusia = 'search_trends_ageusia' (OPT),
+        search_trends_alcoholism = 'search_trends_alcoholism' (OPT),
+        search_trends_allergic_conjunctivitis = 'search_trends_allergic_conjunctivitis' (OPT),
+        search_trends_allergy = 'search_trends_allergy' (OPT),
+        search_trends_amblyopia = 'search_trends_amblyopia' (OPT),
+        search_trends_amenorrhea = 'search_trends_amenorrhea' (OPT),
+        search_trends_amnesia = 'search_trends_amnesia' (OPT),
+        search_trends_anal_fissure = 'search_trends_anal_fissure' (OPT),
+        search_trends_anaphylaxis = 'search_trends_anaphylaxis' (OPT),
+        search_trends_anemia = 'search_trends_anemia' (OPT),
+        search_trends_angina_pectoris = 'search_trends_angina_pectoris' (OPT),
+        search_trends_angioedema = 'search_trends_angioedema' (OPT),
+        search_trends_angular_cheilitis = 'search_trends_angular_cheilitis' (OPT),
+        search_trends_anosmia = 'search_trends_anosmia' (OPT),
+        search_trends_anxiety = 'search_trends_anxiety' (OPT),
+        search_trends_aphasia = 'search_trends_aphasia' (OPT),
+        search_trends_aphonia = 'search_trends_aphonia' (OPT),
+        search_trends_apnea = 'search_trends_apnea' (OPT),
+        search_trends_arthralgia = 'search_trends_arthralgia' (OPT),
+        search_trends_arthritis = 'search_trends_arthritis' (OPT),
+        search_trends_ascites = 'search_trends_ascites' (OPT),
+        search_trends_asperger_syndrome = 'search_trends_asperger_syndrome' (OPT),
+        search_trends_asphyxia = 'search_trends_asphyxia' (OPT),
+        search_trends_asthma = 'search_trends_asthma' (OPT),
+        search_trends_astigmatism = 'search_trends_astigmatism' (OPT),
+        search_trends_ataxia = 'search_trends_ataxia' (OPT),
+        search_trends_atheroma = 'search_trends_atheroma' (OPT),
+        search_trends_attention_deficit_hyperactivity_disorder = 'search_trends_attention_deficit_hyperactivity_disorder' (OPT),
+        search_trends_auditory_hallucination = 'search_trends_auditory_hallucination' (OPT),
+        search_trends_autoimmune_disease = 'search_trends_autoimmune_disease' (OPT),
+        search_trends_avoidant_personality_disorder = 'search_trends_avoidant_personality_disorder' (OPT),
+        search_trends_back_pain = 'search_trends_back_pain' (OPT),
+        search_trends_bacterial_vaginosis = 'search_trends_bacterial_vaginosis' (OPT),
+        search_trends_balance_disorder = 'search_trends_balance_disorder' (OPT),
+        search_trends_beaus_lines = 'search_trends_beaus_lines' (OPT),
+        search_trends_bells_palsy = 'search_trends_bells_palsy' (OPT),
+        search_trends_biliary_colic = 'search_trends_biliary_colic' (OPT),
+        search_trends_binge_eating = 'search_trends_binge_eating' (OPT),
+        search_trends_bleeding = 'search_trends_bleeding' (OPT),
+        search_trends_bleeding_on_probing = 'search_trends_bleeding_on_probing' (OPT),
+        search_trends_blepharospasm = 'search_trends_blepharospasm' (OPT),
+        search_trends_bloating = 'search_trends_bloating' (OPT),
+        search_trends_blood_in_stool = 'search_trends_blood_in_stool' (OPT),
+        search_trends_blurred_vision = 'search_trends_blurred_vision' (OPT),
+        search_trends_blushing = 'search_trends_blushing' (OPT),
+        search_trends_boil = 'search_trends_boil' (OPT),
+        search_trends_bone_fracture = 'search_trends_bone_fracture' (OPT),
+        search_trends_bone_tumor = 'search_trends_bone_tumor' (OPT),
+        search_trends_bowel_obstruction = 'search_trends_bowel_obstruction' (OPT),
+        search_trends_bradycardia = 'search_trends_bradycardia' (OPT),
+        search_trends_braxton_hicks_contractions = 'search_trends_braxton_hicks_contractions' (OPT),
+        search_trends_breakthrough_bleeding = 'search_trends_breakthrough_bleeding' (OPT),
+        search_trends_breast_pain = 'search_trends_breast_pain' (OPT),
+        search_trends_bronchitis = 'search_trends_bronchitis' (OPT),
+        search_trends_bruise = 'search_trends_bruise' (OPT),
+        search_trends_bruxism = 'search_trends_bruxism' (OPT),
+        search_trends_bunion = 'search_trends_bunion' (OPT),
+        search_trends_burn = 'search_trends_burn' (OPT),
+        search_trends_burning_chest_pain = 'search_trends_burning_chest_pain' (OPT),
+        search_trends_burning_mouth_syndrome = 'search_trends_burning_mouth_syndrome' (OPT),
+        search_trends_candidiasis = 'search_trends_candidiasis' (OPT),
+        search_trends_canker_sore = 'search_trends_canker_sore' (OPT),
+        search_trends_cardiac_arrest = 'search_trends_cardiac_arrest' (OPT),
+        search_trends_carpal_tunnel_syndrome = 'search_trends_carpal_tunnel_syndrome' (OPT),
+        search_trends_cataplexy = 'search_trends_cataplexy' (OPT),
+        search_trends_cataract = 'search_trends_cataract' (OPT),
+        search_trends_chancre = 'search_trends_chancre' (OPT),
+        search_trends_cheilitis = 'search_trends_cheilitis' (OPT),
+        search_trends_chest_pain = 'search_trends_chest_pain' (OPT),
+        search_trends_chills = 'search_trends_chills' (OPT),
+        search_trends_chorea = 'search_trends_chorea' (OPT),
+        search_trends_chronic_pain = 'search_trends_chronic_pain' (OPT),
+        search_trends_cirrhosis = 'search_trends_cirrhosis' (OPT),
+        search_trends_cleft_lip_and_cleft_palate = 'search_trends_cleft_lip_and_cleft_palate' (OPT),
+        search_trends_clouding_of_consciousness = 'search_trends_clouding_of_consciousness' (OPT),
+        search_trends_cluster_headache = 'search_trends_cluster_headache' (OPT),
+        search_trends_colitis = 'search_trends_colitis' (OPT),
+        search_trends_coma = 'search_trends_coma' (OPT),
+        search_trends_common_cold = 'search_trends_common_cold' (OPT),
+        search_trends_compulsive_behavior = 'search_trends_compulsive_behavior' (OPT),
+        search_trends_compulsive_hoarding = 'search_trends_compulsive_hoarding' (OPT),
+        search_trends_confusion = 'search_trends_confusion' (OPT),
+        search_trends_congenital_heart_defect = 'search_trends_congenital_heart_defect' (OPT),
+        search_trends_conjunctivitis = 'search_trends_conjunctivitis' (OPT),
+        search_trends_constipation = 'search_trends_constipation' (OPT),
+        search_trends_convulsion = 'search_trends_convulsion' (OPT),
+        search_trends_cough = 'search_trends_cough' (OPT),
+        search_trends_crackles = 'search_trends_crackles' (OPT),
+        search_trends_cramp = 'search_trends_cramp' (OPT),
+        search_trends_crepitus = 'search_trends_crepitus' (OPT),
+        search_trends_croup = 'search_trends_croup' (OPT),
+        search_trends_cyanosis = 'search_trends_cyanosis' (OPT),
+        search_trends_dandruff = 'search_trends_dandruff' (OPT),
+        search_trends_delayed_onset_muscle_soreness = 'search_trends_delayed_onset_muscle_soreness' (OPT),
+        search_trends_dementia = 'search_trends_dementia' (OPT),
+        search_trends_dentin_hypersensitivity = 'search_trends_dentin_hypersensitivity' (OPT),
+        search_trends_depersonalization = 'search_trends_depersonalization' (OPT),
+        search_trends_depression = 'search_trends_depression' (OPT),
+        search_trends_dermatitis = 'search_trends_dermatitis' (OPT),
+        search_trends_desquamation = 'search_trends_desquamation' (OPT),
+        search_trends_developmental_disability = 'search_trends_developmental_disability' (OPT),
+        search_trends_diabetes = 'search_trends_diabetes' (OPT),
+        search_trends_diabetic_ketoacidosis = 'search_trends_diabetic_ketoacidosis' (OPT),
+        search_trends_diarrhea = 'search_trends_diarrhea' (OPT),
+        search_trends_dizziness = 'search_trends_dizziness' (OPT),
+        search_trends_dry_eye_syndrome = 'search_trends_dry_eye_syndrome' (OPT),
+        search_trends_dysautonomia = 'search_trends_dysautonomia' (OPT),
+        search_trends_dysgeusia = 'search_trends_dysgeusia' (OPT),
+        search_trends_dysmenorrhea = 'search_trends_dysmenorrhea' (OPT),
+        search_trends_dyspareunia = 'search_trends_dyspareunia' (OPT),
+        search_trends_dysphagia = 'search_trends_dysphagia' (OPT),
+        search_trends_dysphoria = 'search_trends_dysphoria' (OPT),
+        search_trends_dystonia = 'search_trends_dystonia' (OPT),
+        search_trends_dysuria = 'search_trends_dysuria' (OPT),
+        search_trends_ear_pain = 'search_trends_ear_pain' (OPT),
+        search_trends_eczema = 'search_trends_eczema' (OPT),
+        search_trends_edema = 'search_trends_edema' (OPT),
+        search_trends_encephalitis = 'search_trends_encephalitis' (OPT),
+        search_trends_encephalopathy = 'search_trends_encephalopathy' (OPT),
+        search_trends_epidermoid_cyst = 'search_trends_epidermoid_cyst' (OPT),
+        search_trends_epilepsy = 'search_trends_epilepsy' (OPT),
+        search_trends_epiphora = 'search_trends_epiphora' (OPT),
+        search_trends_erectile_dysfunction = 'search_trends_erectile_dysfunction' (OPT),
+        search_trends_erythema = 'search_trends_erythema' (OPT),
+        search_trends_erythema_chronicum_migrans = 'search_trends_erythema_chronicum_migrans' (OPT),
+        search_trends_esophagitis = 'search_trends_esophagitis' (OPT),
+        search_trends_excessive_daytime_sleepiness = 'search_trends_excessive_daytime_sleepiness' (OPT),
+        search_trends_eye_pain = 'search_trends_eye_pain' (OPT),
+        search_trends_eye_strain = 'search_trends_eye_strain' (OPT),
+        search_trends_facial_nerve_paralysis = 'search_trends_facial_nerve_paralysis' (OPT),
+        search_trends_facial_swelling = 'search_trends_facial_swelling' (OPT),
+        search_trends_fasciculation = 'search_trends_fasciculation' (OPT),
+        search_trends_fatigue = 'search_trends_fatigue' (OPT),
+        search_trends_fatty_liver_disease = 'search_trends_fatty_liver_disease' (OPT),
+        search_trends_fecal_incontinence = 'search_trends_fecal_incontinence' (OPT),
+        search_trends_fever = 'search_trends_fever' (OPT),
+        search_trends_fibrillation = 'search_trends_fibrillation' (OPT),
+        search_trends_fibrocystic_breast_changes = 'search_trends_fibrocystic_breast_changes' (OPT),
+        search_trends_fibromyalgia = 'search_trends_fibromyalgia' (OPT),
+        search_trends_flatulence = 'search_trends_flatulence' (OPT),
+        search_trends_floater = 'search_trends_floater' (OPT),
+        search_trends_focal_seizure = 'search_trends_focal_seizure' (OPT),
+        search_trends_folate_deficiency = 'search_trends_folate_deficiency' (OPT),
+        search_trends_food_craving = 'search_trends_food_craving' (OPT),
+        search_trends_food_intolerance = 'search_trends_food_intolerance' (OPT),
+        search_trends_frequent_urination = 'search_trends_frequent_urination' (OPT),
+        search_trends_gastroesophageal_reflux_disease = 'search_trends_gastroesophageal_reflux_disease' (OPT),
+        search_trends_gastroparesis = 'search_trends_gastroparesis' (OPT),
+        search_trends_generalized_anxiety_disorder = 'search_trends_generalized_anxiety_disorder' (OPT),
+        search_trends_genital_wart = 'search_trends_genital_wart' (OPT),
+        search_trends_gingival_recession = 'search_trends_gingival_recession' (OPT),
+        search_trends_gingivitis = 'search_trends_gingivitis' (OPT),
+        search_trends_globus_pharyngis = 'search_trends_globus_pharyngis' (OPT),
+        search_trends_goitre = 'search_trends_goitre' (OPT),
+        search_trends_gout = 'search_trends_gout' (OPT),
+        search_trends_grandiosity = 'search_trends_grandiosity' (OPT),
+        search_trends_granuloma = 'search_trends_granuloma' (OPT),
+        search_trends_guilt = 'search_trends_guilt' (OPT),
+        search_trends_hair_loss = 'search_trends_hair_loss' (OPT),
+        search_trends_halitosis = 'search_trends_halitosis' (OPT),
+        search_trends_hay_fever = 'search_trends_hay_fever' (OPT),
+        search_trends_headache = 'search_trends_headache' (OPT),
+        search_trends_heart_arrhythmia = 'search_trends_heart_arrhythmia' (OPT),
+        search_trends_heart_murmur = 'search_trends_heart_murmur' (OPT),
+        search_trends_heartburn = 'search_trends_heartburn' (OPT),
+        search_trends_hematochezia = 'search_trends_hematochezia' (OPT),
+        search_trends_hematoma = 'search_trends_hematoma' (OPT),
+        search_trends_hematuria = 'search_trends_hematuria' (OPT),
+        search_trends_hemolysis = 'search_trends_hemolysis' (OPT),
+        search_trends_hemoptysis = 'search_trends_hemoptysis' (OPT),
+        search_trends_hemorrhoids = 'search_trends_hemorrhoids' (OPT),
+        search_trends_hepatic_encephalopathy = 'search_trends_hepatic_encephalopathy' (OPT),
+        search_trends_hepatitis = 'search_trends_hepatitis' (OPT),
+        search_trends_hepatotoxicity = 'search_trends_hepatotoxicity' (OPT),
+        search_trends_hiccup = 'search_trends_hiccup' (OPT),
+        search_trends_hip_pain = 'search_trends_hip_pain' (OPT),
+        search_trends_hives = 'search_trends_hives' (OPT),
+        search_trends_hot_flash = 'search_trends_hot_flash' (OPT),
+        search_trends_hydrocephalus = 'search_trends_hydrocephalus' (OPT),
+        search_trends_hypercalcaemia = 'search_trends_hypercalcaemia' (OPT),
+        search_trends_hypercapnia = 'search_trends_hypercapnia' (OPT),
+        search_trends_hypercholesterolemia = 'search_trends_hypercholesterolemia' (OPT),
+        search_trends_hyperemesis_gravidarum = 'search_trends_hyperemesis_gravidarum' (OPT),
+        search_trends_hyperglycemia = 'search_trends_hyperglycemia' (OPT),
+        search_trends_hyperhidrosis = 'search_trends_hyperhidrosis' (OPT),
+        search_trends_hyperkalemia = 'search_trends_hyperkalemia' (OPT),
+        search_trends_hyperlipidemia = 'search_trends_hyperlipidemia' (OPT),
+        search_trends_hypermobility = 'search_trends_hypermobility' (OPT),
+        search_trends_hyperpigmentation = 'search_trends_hyperpigmentation' (OPT),
+        search_trends_hypersomnia = 'search_trends_hypersomnia' (OPT),
+        search_trends_hypertension = 'search_trends_hypertension' (OPT),
+        search_trends_hyperthermia = 'search_trends_hyperthermia' (OPT),
+        search_trends_hyperthyroidism = 'search_trends_hyperthyroidism' (OPT),
+        search_trends_hypertriglyceridemia = 'search_trends_hypertriglyceridemia' (OPT),
+        search_trends_hypertrophy = 'search_trends_hypertrophy' (OPT),
+        search_trends_hyperventilation = 'search_trends_hyperventilation' (OPT),
+        search_trends_hypocalcaemia = 'search_trends_hypocalcaemia' (OPT),
+        search_trends_hypochondriasis = 'search_trends_hypochondriasis' (OPT),
+        search_trends_hypoglycemia = 'search_trends_hypoglycemia' (OPT),
+        search_trends_hypogonadism = 'search_trends_hypogonadism' (OPT),
+        search_trends_hypokalemia = 'search_trends_hypokalemia' (OPT),
+        search_trends_hypomania = 'search_trends_hypomania' (OPT),
+        search_trends_hyponatremia = 'search_trends_hyponatremia' (OPT),
+        search_trends_hypotension = 'search_trends_hypotension' (OPT),
+        search_trends_hypothyroidism = 'search_trends_hypothyroidism' (OPT),
+        search_trends_hypoxemia = 'search_trends_hypoxemia' (OPT),
+        search_trends_hypoxia = 'search_trends_hypoxia' (OPT),
+        search_trends_impetigo = 'search_trends_impetigo' (OPT),
+        search_trends_implantation_bleeding = 'search_trends_implantation_bleeding' (OPT),
+        search_trends_impulsivity = 'search_trends_impulsivity' (OPT),
+        search_trends_indigestion = 'search_trends_indigestion' (OPT),
+        search_trends_infection = 'search_trends_infection' (OPT),
+        search_trends_inflammation = 'search_trends_inflammation' (OPT),
+        search_trends_inflammatory_bowel_disease = 'search_trends_inflammatory_bowel_disease' (OPT),
+        search_trends_ingrown_hair = 'search_trends_ingrown_hair' (OPT),
+        search_trends_insomnia = 'search_trends_insomnia' (OPT),
+        search_trends_insulin_resistance = 'search_trends_insulin_resistance' (OPT),
+        search_trends_intermenstrual_bleeding = 'search_trends_intermenstrual_bleeding' (OPT),
+        search_trends_intracranial_pressure = 'search_trends_intracranial_pressure' (OPT),
+        search_trends_iron_deficiency = 'search_trends_iron_deficiency' (OPT),
+        search_trends_irregular_menstruation = 'search_trends_irregular_menstruation' (OPT),
+        search_trends_itch = 'search_trends_itch' (OPT),
+        search_trends_jaundice = 'search_trends_jaundice' (OPT),
+        search_trends_kidney_failure = 'search_trends_kidney_failure' (OPT),
+        search_trends_kidney_stone = 'search_trends_kidney_stone' (OPT),
+        search_trends_knee_pain = 'search_trends_knee_pain' (OPT),
+        search_trends_kyphosis = 'search_trends_kyphosis' (OPT),
+        search_trends_lactose_intolerance = 'search_trends_lactose_intolerance' (OPT),
+        search_trends_laryngitis = 'search_trends_laryngitis' (OPT),
+        search_trends_leg_cramps = 'search_trends_leg_cramps' (OPT),
+        search_trends_lesion = 'search_trends_lesion' (OPT),
+        search_trends_leukorrhea = 'search_trends_leukorrhea' (OPT),
+        search_trends_lightheadedness = 'search_trends_lightheadedness' (OPT),
+        search_trends_low_back_pain = 'search_trends_low_back_pain' (OPT),
+        search_trends_low_grade_fever = 'search_trends_low_grade_fever' (OPT),
+        search_trends_lymphedema = 'search_trends_lymphedema' (OPT),
+        search_trends_major_depressive_disorder = 'search_trends_major_depressive_disorder' (OPT),
+        search_trends_malabsorption = 'search_trends_malabsorption' (OPT),
+        search_trends_male_infertility = 'search_trends_male_infertility' (OPT),
+        search_trends_manic_disorder = 'search_trends_manic_disorder' (OPT),
+        search_trends_melasma = 'search_trends_melasma' (OPT),
+        search_trends_melena = 'search_trends_melena' (OPT),
+        search_trends_meningitis = 'search_trends_meningitis' (OPT),
+        search_trends_menorrhagia = 'search_trends_menorrhagia' (OPT),
+        search_trends_middle_back_pain = 'search_trends_middle_back_pain' (OPT),
+        search_trends_migraine = 'search_trends_migraine' (OPT),
+        search_trends_milium = 'search_trends_milium' (OPT),
+        search_trends_mitral_insufficiency = 'search_trends_mitral_insufficiency' (OPT),
+        search_trends_mood_disorder = 'search_trends_mood_disorder' (OPT),
+        search_trends_mood_swing = 'search_trends_mood_swing' (OPT),
+        search_trends_morning_sickness = 'search_trends_morning_sickness' (OPT),
+        search_trends_motion_sickness = 'search_trends_motion_sickness' (OPT),
+        search_trends_mouth_ulcer = 'search_trends_mouth_ulcer' (OPT),
+        search_trends_muscle_atrophy = 'search_trends_muscle_atrophy' (OPT),
+        search_trends_muscle_weakness = 'search_trends_muscle_weakness' (OPT),
+        search_trends_myalgia = 'search_trends_myalgia' (OPT),
+        search_trends_mydriasis = 'search_trends_mydriasis' (OPT),
+        search_trends_myocardial_infarction = 'search_trends_myocardial_infarction' (OPT),
+        search_trends_myoclonus = 'search_trends_myoclonus' (OPT),
+        search_trends_nasal_congestion = 'search_trends_nasal_congestion' (OPT),
+        search_trends_nasal_polyp = 'search_trends_nasal_polyp' (OPT),
+        search_trends_nausea = 'search_trends_nausea' (OPT),
+        search_trends_neck_mass = 'search_trends_neck_mass' (OPT),
+        search_trends_neck_pain = 'search_trends_neck_pain' (OPT),
+        search_trends_neonatal_jaundice = 'search_trends_neonatal_jaundice' (OPT),
+        search_trends_nerve_injury = 'search_trends_nerve_injury' (OPT),
+        search_trends_neuralgia = 'search_trends_neuralgia' (OPT),
+        search_trends_neutropenia = 'search_trends_neutropenia' (OPT),
+        search_trends_night_sweats = 'search_trends_night_sweats' (OPT),
+        search_trends_night_terror = 'search_trends_night_terror' (OPT),
+        search_trends_nocturnal_enuresis = 'search_trends_nocturnal_enuresis' (OPT),
+        search_trends_nodule = 'search_trends_nodule' (OPT),
+        search_trends_nosebleed = 'search_trends_nosebleed' (OPT),
+        search_trends_nystagmus = 'search_trends_nystagmus' (OPT),
+        search_trends_obesity = 'search_trends_obesity' (OPT),
+        search_trends_onychorrhexis = 'search_trends_onychorrhexis' (OPT),
+        search_trends_oral_candidiasis = 'search_trends_oral_candidiasis' (OPT),
+        search_trends_orthostatic_hypotension = 'search_trends_orthostatic_hypotension' (OPT),
+        search_trends_osteopenia = 'search_trends_osteopenia' (OPT),
+        search_trends_osteophyte = 'search_trends_osteophyte' (OPT),
+        search_trends_osteoporosis = 'search_trends_osteoporosis' (OPT),
+        search_trends_otitis = 'search_trends_otitis' (OPT),
+        search_trends_otitis_externa = 'search_trends_otitis_externa' (OPT),
+        search_trends_otitis_media = 'search_trends_otitis_media' (OPT),
+        search_trends_pain = 'search_trends_pain' (OPT),
+        search_trends_palpitations = 'search_trends_palpitations' (OPT),
+        search_trends_pancreatitis = 'search_trends_pancreatitis' (OPT),
+        search_trends_panic_attack = 'search_trends_panic_attack' (OPT),
+        search_trends_papule = 'search_trends_papule' (OPT),
+        search_trends_paranoia = 'search_trends_paranoia' (OPT),
+        search_trends_paresthesia = 'search_trends_paresthesia' (OPT),
+        search_trends_pelvic_inflammatory_disease = 'search_trends_pelvic_inflammatory_disease' (OPT),
+        search_trends_pericarditis = 'search_trends_pericarditis' (OPT),
+        search_trends_periodontal_disease = 'search_trends_periodontal_disease' (OPT),
+        search_trends_periorbital_puffiness = 'search_trends_periorbital_puffiness' (OPT),
+        search_trends_peripheral_neuropathy = 'search_trends_peripheral_neuropathy' (OPT),
+        search_trends_perspiration = 'search_trends_perspiration' (OPT),
+        search_trends_petechia = 'search_trends_petechia' (OPT),
+        search_trends_phlegm = 'search_trends_phlegm' (OPT),
+        search_trends_photodermatitis = 'search_trends_photodermatitis' (OPT),
+        search_trends_photophobia = 'search_trends_photophobia' (OPT),
+        search_trends_photopsia = 'search_trends_photopsia' (OPT),
+        search_trends_pleural_effusion = 'search_trends_pleural_effusion' (OPT),
+        search_trends_pleurisy = 'search_trends_pleurisy' (OPT),
+        search_trends_pneumonia = 'search_trends_pneumonia' (OPT),
+        search_trends_podalgia = 'search_trends_podalgia' (OPT),
+        search_trends_polycythemia = 'search_trends_polycythemia' (OPT),
+        search_trends_polydipsia = 'search_trends_polydipsia' (OPT),
+        search_trends_polyneuropathy = 'search_trends_polyneuropathy' (OPT),
+        search_trends_polyuria = 'search_trends_polyuria' (OPT),
+        search_trends_poor_posture = 'search_trends_poor_posture' (OPT),
+        search_trends_post_nasal_drip = 'search_trends_post_nasal_drip' (OPT),
+        search_trends_postural_orthostatic_tachycardia_syndrome = 'search_trends_postural_orthostatic_tachycardia_syndrome' (OPT),
+        search_trends_prediabetes = 'search_trends_prediabetes' (OPT),
+        search_trends_proteinuria = 'search_trends_proteinuria' (OPT),
+        search_trends_pruritus_ani = 'search_trends_pruritus_ani' (OPT),
+        search_trends_psychosis = 'search_trends_psychosis' (OPT),
+        search_trends_ptosis = 'search_trends_ptosis' (OPT),
+        search_trends_pulmonary_edema = 'search_trends_pulmonary_edema' (OPT),
+        search_trends_pulmonary_hypertension = 'search_trends_pulmonary_hypertension' (OPT),
+        search_trends_purpura = 'search_trends_purpura' (OPT),
+        search_trends_pus = 'search_trends_pus' (OPT),
+        search_trends_pyelonephritis = 'search_trends_pyelonephritis' (OPT),
+        search_trends_radiculopathy = 'search_trends_radiculopathy' (OPT),
+        search_trends_rectal_pain = 'search_trends_rectal_pain' (OPT),
+        search_trends_rectal_prolapse = 'search_trends_rectal_prolapse' (OPT),
+        search_trends_red_eye = 'search_trends_red_eye' (OPT),
+        search_trends_renal_colic = 'search_trends_renal_colic' (OPT),
+        search_trends_restless_legs_syndrome = 'search_trends_restless_legs_syndrome' (OPT),
+        search_trends_rheum = 'search_trends_rheum' (OPT),
+        search_trends_rhinitis = 'search_trends_rhinitis' (OPT),
+        search_trends_rhinorrhea = 'search_trends_rhinorrhea' (OPT),
+        search_trends_rosacea = 'search_trends_rosacea' (OPT),
+        search_trends_round_ligament_pain = 'search_trends_round_ligament_pain' (OPT),
+        search_trends_rumination = 'search_trends_rumination' (OPT),
+        search_trends_scar = 'search_trends_scar' (OPT),
+        search_trends_sciatica = 'search_trends_sciatica' (OPT),
+        search_trends_scoliosis = 'search_trends_scoliosis' (OPT),
+        search_trends_seborrheic_dermatitis = 'search_trends_seborrheic_dermatitis' (OPT),
+        search_trends_self_harm = 'search_trends_self_harm' (OPT),
+        search_trends_sensitivity_to_sound = 'search_trends_sensitivity_to_sound' (OPT),
+        search_trends_sexual_dysfunction = 'search_trends_sexual_dysfunction' (OPT),
+        search_trends_shallow_breathing = 'search_trends_shallow_breathing' (OPT),
+        search_trends_sharp_pain = 'search_trends_sharp_pain' (OPT),
+        search_trends_shivering = 'search_trends_shivering' (OPT),
+        search_trends_shortness_of_breath = 'search_trends_shortness_of_breath' (OPT),
+        search_trends_shyness = 'search_trends_shyness' (OPT),
+        search_trends_sinusitis = 'search_trends_sinusitis' (OPT),
+        search_trends_skin_condition = 'search_trends_skin_condition' (OPT),
+        search_trends_skin_rash = 'search_trends_skin_rash' (OPT),
+        search_trends_skin_tag = 'search_trends_skin_tag' (OPT),
+        search_trends_skin_ulcer = 'search_trends_skin_ulcer' (OPT),
+        search_trends_sleep_apnea = 'search_trends_sleep_apnea' (OPT),
+        search_trends_sleep_deprivation = 'search_trends_sleep_deprivation' (OPT),
+        search_trends_sleep_disorder = 'search_trends_sleep_disorder' (OPT),
+        search_trends_snoring = 'search_trends_snoring' (OPT),
+        search_trends_sore_throat = 'search_trends_sore_throat' (OPT),
+        search_trends_spasticity = 'search_trends_spasticity' (OPT),
+        search_trends_splenomegaly = 'search_trends_splenomegaly' (OPT),
+        search_trends_sputum = 'search_trends_sputum' (OPT),
+        search_trends_stomach_rumble = 'search_trends_stomach_rumble' (OPT),
+        search_trends_strabismus = 'search_trends_strabismus' (OPT),
+        search_trends_stretch_marks = 'search_trends_stretch_marks' (OPT),
+        search_trends_stridor = 'search_trends_stridor' (OPT),
+        search_trends_stroke = 'search_trends_stroke' (OPT),
+        search_trends_stuttering = 'search_trends_stuttering' (OPT),
+        search_trends_subdural_hematoma = 'search_trends_subdural_hematoma' (OPT),
+        search_trends_suicidal_ideation = 'search_trends_suicidal_ideation' (OPT),
+        search_trends_swelling = 'search_trends_swelling' (OPT),
+        search_trends_swollen_feet = 'search_trends_swollen_feet' (OPT),
+        search_trends_swollen_lymph_nodes = 'search_trends_swollen_lymph_nodes' (OPT),
+        search_trends_syncope = 'search_trends_syncope' (OPT),
+        search_trends_tachycardia = 'search_trends_tachycardia' (OPT),
+        search_trends_tachypnea = 'search_trends_tachypnea' (OPT),
+        search_trends_telangiectasia = 'search_trends_telangiectasia' (OPT),
+        search_trends_tenderness = 'search_trends_tenderness' (OPT),
+        search_trends_testicular_pain = 'search_trends_testicular_pain' (OPT),
+        search_trends_throat_irritation = 'search_trends_throat_irritation' (OPT),
+        search_trends_thrombocytopenia = 'search_trends_thrombocytopenia' (OPT),
+        search_trends_thyroid_nodule = 'search_trends_thyroid_nodule' (OPT),
+        search_trends_tic = 'search_trends_tic' (OPT),
+        search_trends_tinnitus = 'search_trends_tinnitus' (OPT),
+        search_trends_tonsillitis = 'search_trends_tonsillitis' (OPT),
+        search_trends_toothache = 'search_trends_toothache' (OPT),
+        search_trends_tremor = 'search_trends_tremor' (OPT),
+        search_trends_trichoptilosis = 'search_trends_trichoptilosis' (OPT),
+        search_trends_tumor = 'search_trends_tumor' (OPT),
+        search_trends_type_2_diabetes = 'search_trends_type_2_diabetes' (OPT),
+        search_trends_unconsciousness = 'search_trends_unconsciousness' (OPT),
+        search_trends_underweight = 'search_trends_underweight' (OPT),
+        search_trends_upper_respiratory_tract_infection = 'search_trends_upper_respiratory_tract_infection' (OPT),
+        search_trends_urethritis = 'search_trends_urethritis' (OPT),
+        search_trends_urinary_incontinence = 'search_trends_urinary_incontinence' (OPT),
+        search_trends_urinary_tract_infection = 'search_trends_urinary_tract_infection' (OPT),
+        search_trends_urinary_urgency = 'search_trends_urinary_urgency' (OPT),
+        search_trends_uterine_contraction = 'search_trends_uterine_contraction' (OPT),
+        search_trends_vaginal_bleeding = 'search_trends_vaginal_bleeding' (OPT),
+        search_trends_vaginal_discharge = 'search_trends_vaginal_discharge' (OPT),
+        search_trends_vaginitis = 'search_trends_vaginitis' (OPT),
+        search_trends_varicose_veins = 'search_trends_varicose_veins' (OPT),
+        search_trends_vasculitis = 'search_trends_vasculitis' (OPT),
+        search_trends_ventricular_fibrillation = 'search_trends_ventricular_fibrillation' (OPT),
+        search_trends_ventricular_tachycardia = 'search_trends_ventricular_tachycardia' (OPT),
+        search_trends_vertigo = 'search_trends_vertigo' (OPT),
+        search_trends_viral_pneumonia = 'search_trends_viral_pneumonia' (OPT),
+        search_trends_visual_acuity = 'search_trends_visual_acuity' (OPT),
+        search_trends_vomiting = 'search_trends_vomiting' (OPT),
+        search_trends_wart = 'search_trends_wart' (OPT),
+        search_trends_water_retention = 'search_trends_water_retention' (OPT),
+        search_trends_weakness = 'search_trends_weakness' (OPT),
+        search_trends_weight_gain = 'search_trends_weight_gain' (OPT),
+        search_trends_wheeze = 'search_trends_wheeze' (OPT),
+        search_trends_xeroderma = 'search_trends_xeroderma' (OPT),
+        search_trends_xerostomia = 'search_trends_xerostomia' (OPT),
+        search_trends_yawn = 'search_trends_yawn' (OPT),
+        new_recovered_age_0 = 'new_recovered_age_0' (OPT),
+        new_recovered_age_1 = 'new_recovered_age_1' (OPT),
+        new_recovered_age_2 = 'new_recovered_age_2' (OPT),
+        new_recovered_age_3 = 'new_recovered_age_3' (OPT),
+        new_recovered_age_4 = 'new_recovered_age_4' (OPT),
+        new_recovered_age_5 = 'new_recovered_age_5' (OPT),
+        new_recovered_age_6 = 'new_recovered_age_6' (OPT),
+        new_recovered_age_7 = 'new_recovered_age_7' (OPT),
+        new_recovered_age_8 = 'new_recovered_age_8' (OPT),
+        new_recovered_age_9 = 'new_recovered_age_9' (OPT),
+        cumulative_recovered_age_0 = 'cumulative_recovered_age_0' (OPT),
+        cumulative_recovered_age_1 = 'cumulative_recovered_age_1' (OPT),
+        cumulative_recovered_age_2 = 'cumulative_recovered_age_2' (OPT),
+        cumulative_recovered_age_3 = 'cumulative_recovered_age_3' (OPT),
+        cumulative_recovered_age_4 = 'cumulative_recovered_age_4' (OPT),
+        cumulative_recovered_age_5 = 'cumulative_recovered_age_5' (OPT),
+        cumulative_recovered_age_6 = 'cumulative_recovered_age_6' (OPT),
+        cumulative_recovered_age_7 = 'cumulative_recovered_age_7' (OPT),
+        cumulative_recovered_age_8 = 'cumulative_recovered_age_8' (OPT),
+        cumulative_recovered_age_9 = 'cumulative_recovered_age_9' (OPT),
+        new_recovered_male = 'new_recovered_male' (OPT),
+        new_recovered_female = 'new_recovered_female' (OPT),
+        cumulative_recovered_male = 'cumulative_recovered_male' (OPT),
+        cumulative_recovered_female = 'cumulative_recovered_female' (OPT),
+        locality_code = 'locality_code' (OPT),
+        locality_name = 'locality_name' (OPT),
+        new_ventilator_patients = 'new_ventilator_patients' (OPT),
+        cumulative_ventilator_patients = 'cumulative_ventilator_patients' (OPT),
+        new_persons_vaccinated_pfizer = 'new_persons_vaccinated_pfizer' (OPT),
+        cumulative_persons_vaccinated_pfizer = 'cumulative_persons_vaccinated_pfizer' (OPT),
+        new_persons_fully_vaccinated_pfizer = 'new_persons_fully_vaccinated_pfizer' (OPT),
+        cumulative_persons_fully_vaccinated_pfizer = 'cumulative_persons_fully_vaccinated_pfizer' (OPT),
+        new_persons_vaccinated_moderna = 'new_persons_vaccinated_moderna' (OPT),
+        cumulative_persons_vaccinated_moderna = 'cumulative_persons_vaccinated_moderna' (OPT),
+        new_persons_fully_vaccinated_moderna = 'new_persons_fully_vaccinated_moderna' (OPT),
+        cumulative_persons_fully_vaccinated_moderna = 'cumulative_persons_fully_vaccinated_moderna' (OPT),
+        new_persons_vaccinated_janssen = 'new_persons_vaccinated_janssen' (OPT),
+        cumulative_persons_vaccinated_janssen = 'cumulative_persons_vaccinated_janssen' (OPT),
+        new_persons_fully_vaccinated_janssen = 'new_persons_fully_vaccinated_janssen' (OPT),
+        cumulative_persons_fully_vaccinated_janssen = 'cumulative_persons_fully_vaccinated_janssen' (OPT),
+        new_persons_vaccinated_sinovac = 'new_persons_vaccinated_sinovac' (OPT),
+        total_persons_vaccinated_sinovac = 'total_persons_vaccinated_sinovac' (OPT),
+        new_vaccine_doses_administered_pfizer = 'new_vaccine_doses_administered_pfizer' (OPT),
+        cumulative_vaccine_doses_administered_pfizer = 'cumulative_vaccine_doses_administered_pfizer' (OPT),
+        new_vaccine_doses_administered_moderna = 'new_vaccine_doses_administered_moderna' (OPT),
+        cumulative_vaccine_doses_administered_moderna = 'cumulative_vaccine_doses_administered_moderna' (OPT),
+        new_vaccine_doses_administered_janssen = 'new_vaccine_doses_administered_janssen' (OPT),
+        cumulative_vaccine_doses_administered_janssen = 'cumulative_vaccine_doses_administered_janssen' (OPT)
+    );
+
+CREATE OR REPLACE TABLE bv_covid_aggregated I18N us_pst (
+        location_key:text TAGS (technical_view),
+        date:text TAGS (technical_view),
+        place_id:text TAGS (technical_view),
+        wikidata_id:text,
+        datacommons_id:text,
+        country_code:text TAGS (critical),
+        country_name:text TAGS (critical),
+        iso_3166_1_alpha_2:text,
+        iso_3166_1_alpha_3:text,
+        aggregation_level:text,
+        new_confirmed:text,
+        new_deceased:text,
+        cumulative_confirmed:text,
+        cumulative_deceased:text,
+        cumulative_tested:text,
+        new_persons_vaccinated:text,
+        cumulative_persons_vaccinated:text,
+        new_persons_fully_vaccinated:text,
+        cumulative_persons_fully_vaccinated:text,
+        new_vaccine_doses_administered:text,
+        cumulative_vaccine_doses_administered:text,
+        population:text,
+        population_male:text,
+        population_female:text,
+        population_rural:text,
+        population_urban:text,
+        population_density:text,
+        human_development_index:text TAGS (critical),
+        population_age_00_09:text,
+        population_age_10_19:text,
+        population_age_20_29:text,
+        population_age_30_39:text,
+        population_age_40_49:text,
+        population_age_50_59:text,
+        population_age_60_69:text,
+        population_age_70_79:text,
+        population_age_80_and_older:text,
+        gdp_usd:text TAGS (critical),
+        gdp_per_capita_usd:text,
+        openstreetmap_id:text,
+        latitude:text,
+        longitude:text,
+        area_sq_km:text,
+        smoking_prevalence:text,
+        diabetes_prevalence:text,
+        infant_mortality_rate:text,
+        nurses_per_1000:text,
+        physicians_per_1000:text,
+        health_expenditure_usd:text TAGS (critical),
+        out_of_pocket_health_expenditure_usd:text,
+        school_closing:text,
+        workplace_closing:text,
+        cancel_public_events:text,
+        restrictions_on_gatherings:text,
+        public_transport_closing:text,
+        stay_at_home_requirements:text,
+        restrictions_on_internal_movement:text,
+        international_travel_controls:text,
+        income_support:text,
+        debt_relief:text,
+        fiscal_measures:text,
+        international_support:text,
+        public_information_campaigns:text,
+        testing_policy:text,
+        contact_tracing:text,
+        emergency_investment_in_healthcare:text,
+        investment_in_vaccines:text,
+        facial_coverings:text,
+        vaccination_policy:text,
+        stringency_index:text,
+        average_temperature_celsius:text,
+        minimum_temperature_celsius:text,
+        maximum_temperature_celsius:text,
+        rainfall_mm:text,
+        snowfall_mm:text,
+        dew_point:text,
+        relative_humidity:text,
+        new_tested:text,
+        population_largest_city:text,
+        population_clustered:text,
+        human_capital_index:text,
+        area_rural_sq_km:text,
+        area_urban_sq_km:text,
+        life_expectancy:text,
+        adult_male_mortality_rate:text TAGS (critical),
+        adult_female_mortality_rate:text TAGS (critical),
+        pollution_mortality_rate:text,
+        comorbidity_mortality_rate:text,
+        mobility_retail_and_recreation:text,
+        mobility_grocery_and_pharmacy:text,
+        mobility_parks:text,
+        mobility_transit_stations:text,
+        mobility_workplaces:text,
+        mobility_residential:text,
+        hospital_beds_per_1000:text,
+        subregion1_code:text,
+        subregion1_name:text,
+        new_recovered:text,
+        cumulative_recovered:text,
+        elevation_m:text,
+        new_hospitalized_patients:text,
+        cumulative_hospitalized_patients:text,
+        new_intensive_care_patients:text,
+        cumulative_intensive_care_patients:text,
+        new_confirmed_age_0:text,
+        new_confirmed_age_1:text,
+        new_confirmed_age_2:text,
+        new_confirmed_age_3:text,
+        new_confirmed_age_4:text,
+        new_confirmed_age_5:text,
+        new_confirmed_age_6:text,
+        new_confirmed_age_7:text,
+        new_confirmed_age_8:text,
+        new_confirmed_age_9:text,
+        cumulative_confirmed_age_0:text,
+        cumulative_confirmed_age_1:text,
+        cumulative_confirmed_age_2:text,
+        cumulative_confirmed_age_3:text,
+        cumulative_confirmed_age_4:text,
+        cumulative_confirmed_age_5:text,
+        cumulative_confirmed_age_6:text,
+        cumulative_confirmed_age_7:text,
+        cumulative_confirmed_age_8:text,
+        cumulative_confirmed_age_9:text,
+        new_deceased_age_0:text,
+        new_deceased_age_1:text,
+        new_deceased_age_2:text,
+        new_deceased_age_3:text,
+        new_deceased_age_4:text,
+        new_deceased_age_5:text,
+        new_deceased_age_6:text,
+        new_deceased_age_7:text,
+        new_deceased_age_8:text,
+        new_deceased_age_9:text,
+        cumulative_deceased_age_0:text,
+        cumulative_deceased_age_1:text,
+        cumulative_deceased_age_2:text,
+        cumulative_deceased_age_3:text,
+        cumulative_deceased_age_4:text,
+        cumulative_deceased_age_5:text,
+        cumulative_deceased_age_6:text,
+        cumulative_deceased_age_7:text,
+        cumulative_deceased_age_8:text,
+        cumulative_deceased_age_9:text,
+        new_tested_age_0:text,
+        new_tested_age_1:text,
+        new_tested_age_2:text,
+        new_tested_age_3:text,
+        new_tested_age_4:text,
+        new_tested_age_5:text,
+        new_tested_age_6:text,
+        new_tested_age_7:text,
+        new_tested_age_8:text,
+        new_tested_age_9:text,
+        cumulative_tested_age_0:text,
+        cumulative_tested_age_1:text,
+        cumulative_tested_age_2:text,
+        cumulative_tested_age_3:text,
+        cumulative_tested_age_4:text,
+        cumulative_tested_age_5:text,
+        cumulative_tested_age_6:text,
+        cumulative_tested_age_7:text,
+        cumulative_tested_age_8:text,
+        cumulative_tested_age_9:text,
+        new_hospitalized_patients_age_0:text,
+        new_hospitalized_patients_age_1:text,
+        new_hospitalized_patients_age_2:text,
+        new_hospitalized_patients_age_3:text,
+        new_hospitalized_patients_age_4:text,
+        new_hospitalized_patients_age_5:text,
+        new_hospitalized_patients_age_6:text,
+        new_hospitalized_patients_age_7:text,
+        new_hospitalized_patients_age_8:text,
+        new_hospitalized_patients_age_9:text,
+        cumulative_hospitalized_patients_age_0:text,
+        cumulative_hospitalized_patients_age_1:text,
+        cumulative_hospitalized_patients_age_2:text,
+        cumulative_hospitalized_patients_age_3:text,
+        cumulative_hospitalized_patients_age_4:text,
+        cumulative_hospitalized_patients_age_5:text,
+        cumulative_hospitalized_patients_age_6:text,
+        cumulative_hospitalized_patients_age_7:text,
+        cumulative_hospitalized_patients_age_8:text,
+        cumulative_hospitalized_patients_age_9:text,
+        new_intensive_care_patients_age_0:text,
+        new_intensive_care_patients_age_1:text,
+        new_intensive_care_patients_age_2:text,
+        new_intensive_care_patients_age_3:text,
+        new_intensive_care_patients_age_4:text,
+        new_intensive_care_patients_age_5:text,
+        new_intensive_care_patients_age_6:text,
+        new_intensive_care_patients_age_7:text,
+        new_intensive_care_patients_age_8:text,
+        new_intensive_care_patients_age_9:text,
+        cumulative_intensive_care_patients_age_0:text,
+        cumulative_intensive_care_patients_age_1:text,
+        cumulative_intensive_care_patients_age_2:text,
+        cumulative_intensive_care_patients_age_3:text,
+        cumulative_intensive_care_patients_age_4:text,
+        cumulative_intensive_care_patients_age_5:text,
+        cumulative_intensive_care_patients_age_6:text,
+        cumulative_intensive_care_patients_age_7:text,
+        cumulative_intensive_care_patients_age_8:text,
+        cumulative_intensive_care_patients_age_9:text,
+        age_bin_0:text,
+        age_bin_1:text,
+        age_bin_2:text,
+        age_bin_3:text,
+        age_bin_4:text,
+        age_bin_5:text,
+        age_bin_6:text,
+        age_bin_7:text,
+        age_bin_8:text,
+        age_bin_9:text,
+        new_confirmed_male:text,
+        new_confirmed_female:text,
+        cumulative_confirmed_male:text,
+        cumulative_confirmed_female:text,
+        new_deceased_male:text,
+        new_deceased_female:text,
+        cumulative_deceased_male:text,
+        cumulative_deceased_female:text,
+        new_tested_male:text,
+        new_tested_female:text,
+        cumulative_tested_male:text,
+        cumulative_tested_female:text,
+        new_hospitalized_patients_male:text,
+        new_hospitalized_patients_female:text,
+        cumulative_hospitalized_patients_male:text,
+        cumulative_hospitalized_patients_female:text,
+        new_intensive_care_patients_male:text,
+        new_intensive_care_patients_female:text,
+        cumulative_intensive_care_patients_male:text,
+        cumulative_intensive_care_patients_female:text,
+        subregion2_code:text,
+        subregion2_name:text,
+        current_hospitalized_patients:text,
+        current_intensive_care_patients:text,
+        current_ventilator_patients:text,
+        search_trends_abdominal_obesity:text,
+        search_trends_abdominal_pain:text,
+        search_trends_acne:text,
+        search_trends_actinic_keratosis:text,
+        search_trends_acute_bronchitis:text,
+        search_trends_adrenal_crisis:text,
+        search_trends_ageusia:text,
+        search_trends_alcoholism:text,
+        search_trends_allergic_conjunctivitis:text,
+        search_trends_allergy:text,
+        search_trends_amblyopia:text,
+        search_trends_amenorrhea:text,
+        search_trends_amnesia:text,
+        search_trends_anal_fissure:text,
+        search_trends_anaphylaxis:text,
+        search_trends_anemia:text,
+        search_trends_angina_pectoris:text,
+        search_trends_angioedema:text,
+        search_trends_angular_cheilitis:text,
+        search_trends_anosmia:text,
+        search_trends_anxiety:text,
+        search_trends_aphasia:text,
+        search_trends_aphonia:text,
+        search_trends_apnea:text,
+        search_trends_arthralgia:text,
+        search_trends_arthritis:text,
+        search_trends_ascites:text,
+        search_trends_asperger_syndrome:text,
+        search_trends_asphyxia:text,
+        search_trends_asthma:text,
+        search_trends_astigmatism:text,
+        search_trends_ataxia:text,
+        search_trends_atheroma:text,
+        search_trends_attention_deficit_hyperactivity_disorder:text,
+        search_trends_auditory_hallucination:text,
+        search_trends_autoimmune_disease:text,
+        search_trends_avoidant_personality_disorder:text,
+        search_trends_back_pain:text,
+        search_trends_bacterial_vaginosis:text,
+        search_trends_balance_disorder:text,
+        search_trends_beaus_lines:text,
+        search_trends_bells_palsy:text,
+        search_trends_biliary_colic:text,
+        search_trends_binge_eating:text,
+        search_trends_bleeding:text,
+        search_trends_bleeding_on_probing:text,
+        search_trends_blepharospasm:text,
+        search_trends_bloating:text,
+        search_trends_blood_in_stool:text,
+        search_trends_blurred_vision:text,
+        search_trends_blushing:text,
+        search_trends_boil:text,
+        search_trends_bone_fracture:text,
+        search_trends_bone_tumor:text,
+        search_trends_bowel_obstruction:text,
+        search_trends_bradycardia:text,
+        search_trends_braxton_hicks_contractions:text,
+        search_trends_breakthrough_bleeding:text,
+        search_trends_breast_pain:text,
+        search_trends_bronchitis:text,
+        search_trends_bruise:text,
+        search_trends_bruxism:text,
+        search_trends_bunion:text,
+        search_trends_burn:text,
+        search_trends_burning_chest_pain:text,
+        search_trends_burning_mouth_syndrome:text,
+        search_trends_candidiasis:text,
+        search_trends_canker_sore:text,
+        search_trends_cardiac_arrest:text,
+        search_trends_carpal_tunnel_syndrome:text,
+        search_trends_cataplexy:text,
+        search_trends_cataract:text,
+        search_trends_chancre:text,
+        search_trends_cheilitis:text,
+        search_trends_chest_pain:text,
+        search_trends_chills:text,
+        search_trends_chorea:text,
+        search_trends_chronic_pain:text,
+        search_trends_cirrhosis:text,
+        search_trends_cleft_lip_and_cleft_palate:text,
+        search_trends_clouding_of_consciousness:text,
+        search_trends_cluster_headache:text,
+        search_trends_colitis:text,
+        search_trends_coma:text,
+        search_trends_common_cold:text,
+        search_trends_compulsive_behavior:text,
+        search_trends_compulsive_hoarding:text,
+        search_trends_confusion:text,
+        search_trends_congenital_heart_defect:text,
+        search_trends_conjunctivitis:text,
+        search_trends_constipation:text,
+        search_trends_convulsion:text,
+        search_trends_cough:text,
+        search_trends_crackles:text,
+        search_trends_cramp:text,
+        search_trends_crepitus:text,
+        search_trends_croup:text,
+        search_trends_cyanosis:text,
+        search_trends_dandruff:text,
+        search_trends_delayed_onset_muscle_soreness:text,
+        search_trends_dementia:text,
+        search_trends_dentin_hypersensitivity:text,
+        search_trends_depersonalization:text,
+        search_trends_depression:text,
+        search_trends_dermatitis:text,
+        search_trends_desquamation:text,
+        search_trends_developmental_disability:text,
+        search_trends_diabetes:text,
+        search_trends_diabetic_ketoacidosis:text,
+        search_trends_diarrhea:text,
+        search_trends_dizziness:text,
+        search_trends_dry_eye_syndrome:text,
+        search_trends_dysautonomia:text,
+        search_trends_dysgeusia:text,
+        search_trends_dysmenorrhea:text,
+        search_trends_dyspareunia:text,
+        search_trends_dysphagia:text,
+        search_trends_dysphoria:text,
+        search_trends_dystonia:text,
+        search_trends_dysuria:text,
+        search_trends_ear_pain:text,
+        search_trends_eczema:text,
+        search_trends_edema:text,
+        search_trends_encephalitis:text,
+        search_trends_encephalopathy:text,
+        search_trends_epidermoid_cyst:text,
+        search_trends_epilepsy:text,
+        search_trends_epiphora:text,
+        search_trends_erectile_dysfunction:text,
+        search_trends_erythema:text,
+        search_trends_erythema_chronicum_migrans:text,
+        search_trends_esophagitis:text,
+        search_trends_excessive_daytime_sleepiness:text,
+        search_trends_eye_pain:text,
+        search_trends_eye_strain:text,
+        search_trends_facial_nerve_paralysis:text,
+        search_trends_facial_swelling:text,
+        search_trends_fasciculation:text,
+        search_trends_fatigue:text,
+        search_trends_fatty_liver_disease:text,
+        search_trends_fecal_incontinence:text,
+        search_trends_fever:text,
+        search_trends_fibrillation:text,
+        search_trends_fibrocystic_breast_changes:text,
+        search_trends_fibromyalgia:text,
+        search_trends_flatulence:text,
+        search_trends_floater:text,
+        search_trends_focal_seizure:text,
+        search_trends_folate_deficiency:text,
+        search_trends_food_craving:text,
+        search_trends_food_intolerance:text,
+        search_trends_frequent_urination:text,
+        search_trends_gastroesophageal_reflux_disease:text,
+        search_trends_gastroparesis:text,
+        search_trends_generalized_anxiety_disorder:text,
+        search_trends_genital_wart:text,
+        search_trends_gingival_recession:text,
+        search_trends_gingivitis:text,
+        search_trends_globus_pharyngis:text,
+        search_trends_goitre:text,
+        search_trends_gout:text,
+        search_trends_grandiosity:text,
+        search_trends_granuloma:text,
+        search_trends_guilt:text,
+        search_trends_hair_loss:text,
+        search_trends_halitosis:text,
+        search_trends_hay_fever:text,
+        search_trends_headache:text,
+        search_trends_heart_arrhythmia:text,
+        search_trends_heart_murmur:text,
+        search_trends_heartburn:text,
+        search_trends_hematochezia:text,
+        search_trends_hematoma:text,
+        search_trends_hematuria:text,
+        search_trends_hemolysis:text,
+        search_trends_hemoptysis:text,
+        search_trends_hemorrhoids:text,
+        search_trends_hepatic_encephalopathy:text,
+        search_trends_hepatitis:text,
+        search_trends_hepatotoxicity:text,
+        search_trends_hiccup:text,
+        search_trends_hip_pain:text,
+        search_trends_hives:text,
+        search_trends_hot_flash:text,
+        search_trends_hydrocephalus:text,
+        search_trends_hypercalcaemia:text,
+        search_trends_hypercapnia:text,
+        search_trends_hypercholesterolemia:text,
+        search_trends_hyperemesis_gravidarum:text,
+        search_trends_hyperglycemia:text,
+        search_trends_hyperhidrosis:text,
+        search_trends_hyperkalemia:text,
+        search_trends_hyperlipidemia:text,
+        search_trends_hypermobility:text,
+        search_trends_hyperpigmentation:text,
+        search_trends_hypersomnia:text,
+        search_trends_hypertension:text,
+        search_trends_hyperthermia:text,
+        search_trends_hyperthyroidism:text,
+        search_trends_hypertriglyceridemia:text,
+        search_trends_hypertrophy:text,
+        search_trends_hyperventilation:text,
+        search_trends_hypocalcaemia:text,
+        search_trends_hypochondriasis:text,
+        search_trends_hypoglycemia:text,
+        search_trends_hypogonadism:text,
+        search_trends_hypokalemia:text,
+        search_trends_hypomania:text,
+        search_trends_hyponatremia:text,
+        search_trends_hypotension:text,
+        search_trends_hypothyroidism:text,
+        search_trends_hypoxemia:text,
+        search_trends_hypoxia:text,
+        search_trends_impetigo:text,
+        search_trends_implantation_bleeding:text,
+        search_trends_impulsivity:text,
+        search_trends_indigestion:text,
+        search_trends_infection:text,
+        search_trends_inflammation:text,
+        search_trends_inflammatory_bowel_disease:text,
+        search_trends_ingrown_hair:text,
+        search_trends_insomnia:text,
+        search_trends_insulin_resistance:text,
+        search_trends_intermenstrual_bleeding:text,
+        search_trends_intracranial_pressure:text,
+        search_trends_iron_deficiency:text,
+        search_trends_irregular_menstruation:text,
+        search_trends_itch:text,
+        search_trends_jaundice:text,
+        search_trends_kidney_failure:text,
+        search_trends_kidney_stone:text,
+        search_trends_knee_pain:text,
+        search_trends_kyphosis:text,
+        search_trends_lactose_intolerance:text,
+        search_trends_laryngitis:text,
+        search_trends_leg_cramps:text,
+        search_trends_lesion:text,
+        search_trends_leukorrhea:text,
+        search_trends_lightheadedness:text,
+        search_trends_low_back_pain:text,
+        search_trends_low_grade_fever:text,
+        search_trends_lymphedema:text,
+        search_trends_major_depressive_disorder:text,
+        search_trends_malabsorption:text,
+        search_trends_male_infertility:text,
+        search_trends_manic_disorder:text,
+        search_trends_melasma:text,
+        search_trends_melena:text,
+        search_trends_meningitis:text,
+        search_trends_menorrhagia:text,
+        search_trends_middle_back_pain:text,
+        search_trends_migraine:text,
+        search_trends_milium:text,
+        search_trends_mitral_insufficiency:text,
+        search_trends_mood_disorder:text,
+        search_trends_mood_swing:text,
+        search_trends_morning_sickness:text,
+        search_trends_motion_sickness:text,
+        search_trends_mouth_ulcer:text,
+        search_trends_muscle_atrophy:text,
+        search_trends_muscle_weakness:text,
+        search_trends_myalgia:text,
+        search_trends_mydriasis:text,
+        search_trends_myocardial_infarction:text,
+        search_trends_myoclonus:text,
+        search_trends_nasal_congestion:text,
+        search_trends_nasal_polyp:text,
+        search_trends_nausea:text,
+        search_trends_neck_mass:text,
+        search_trends_neck_pain:text,
+        search_trends_neonatal_jaundice:text,
+        search_trends_nerve_injury:text,
+        search_trends_neuralgia:text,
+        search_trends_neutropenia:text,
+        search_trends_night_sweats:text,
+        search_trends_night_terror:text,
+        search_trends_nocturnal_enuresis:text,
+        search_trends_nodule:text,
+        search_trends_nosebleed:text,
+        search_trends_nystagmus:text,
+        search_trends_obesity:text,
+        search_trends_onychorrhexis:text,
+        search_trends_oral_candidiasis:text,
+        search_trends_orthostatic_hypotension:text,
+        search_trends_osteopenia:text,
+        search_trends_osteophyte:text,
+        search_trends_osteoporosis:text,
+        search_trends_otitis:text,
+        search_trends_otitis_externa:text,
+        search_trends_otitis_media:text,
+        search_trends_pain:text,
+        search_trends_palpitations:text,
+        search_trends_pancreatitis:text,
+        search_trends_panic_attack:text,
+        search_trends_papule:text,
+        search_trends_paranoia:text,
+        search_trends_paresthesia:text,
+        search_trends_pelvic_inflammatory_disease:text,
+        search_trends_pericarditis:text,
+        search_trends_periodontal_disease:text,
+        search_trends_periorbital_puffiness:text,
+        search_trends_peripheral_neuropathy:text,
+        search_trends_perspiration:text,
+        search_trends_petechia:text,
+        search_trends_phlegm:text,
+        search_trends_photodermatitis:text,
+        search_trends_photophobia:text,
+        search_trends_photopsia:text,
+        search_trends_pleural_effusion:text,
+        search_trends_pleurisy:text,
+        search_trends_pneumonia:text,
+        search_trends_podalgia:text,
+        search_trends_polycythemia:text,
+        search_trends_polydipsia:text,
+        search_trends_polyneuropathy:text,
+        search_trends_polyuria:text,
+        search_trends_poor_posture:text,
+        search_trends_post_nasal_drip:text,
+        search_trends_postural_orthostatic_tachycardia_syndrome:text,
+        search_trends_prediabetes:text,
+        search_trends_proteinuria:text,
+        search_trends_pruritus_ani:text,
+        search_trends_psychosis:text,
+        search_trends_ptosis:text,
+        search_trends_pulmonary_edema:text,
+        search_trends_pulmonary_hypertension:text,
+        search_trends_purpura:text,
+        search_trends_pus:text,
+        search_trends_pyelonephritis:text,
+        search_trends_radiculopathy:text,
+        search_trends_rectal_pain:text,
+        search_trends_rectal_prolapse:text,
+        search_trends_red_eye:text,
+        search_trends_renal_colic:text,
+        search_trends_restless_legs_syndrome:text,
+        search_trends_rheum:text,
+        search_trends_rhinitis:text,
+        search_trends_rhinorrhea:text,
+        search_trends_rosacea:text,
+        search_trends_round_ligament_pain:text,
+        search_trends_rumination:text,
+        search_trends_scar:text,
+        search_trends_sciatica:text,
+        search_trends_scoliosis:text,
+        search_trends_seborrheic_dermatitis:text,
+        search_trends_self_harm:text,
+        search_trends_sensitivity_to_sound:text,
+        search_trends_sexual_dysfunction:text,
+        search_trends_shallow_breathing:text,
+        search_trends_sharp_pain:text,
+        search_trends_shivering:text,
+        search_trends_shortness_of_breath:text,
+        search_trends_shyness:text,
+        search_trends_sinusitis:text,
+        search_trends_skin_condition:text,
+        search_trends_skin_rash:text,
+        search_trends_skin_tag:text,
+        search_trends_skin_ulcer:text,
+        search_trends_sleep_apnea:text,
+        search_trends_sleep_deprivation:text,
+        search_trends_sleep_disorder:text,
+        search_trends_snoring:text,
+        search_trends_sore_throat:text,
+        search_trends_spasticity:text,
+        search_trends_splenomegaly:text,
+        search_trends_sputum:text,
+        search_trends_stomach_rumble:text,
+        search_trends_strabismus:text,
+        search_trends_stretch_marks:text,
+        search_trends_stridor:text,
+        search_trends_stroke:text,
+        search_trends_stuttering:text,
+        search_trends_subdural_hematoma:text,
+        search_trends_suicidal_ideation:text,
+        search_trends_swelling:text,
+        search_trends_swollen_feet:text,
+        search_trends_swollen_lymph_nodes:text,
+        search_trends_syncope:text,
+        search_trends_tachycardia:text,
+        search_trends_tachypnea:text,
+        search_trends_telangiectasia:text,
+        search_trends_tenderness:text,
+        search_trends_testicular_pain:text,
+        search_trends_throat_irritation:text,
+        search_trends_thrombocytopenia:text,
+        search_trends_thyroid_nodule:text,
+        search_trends_tic:text,
+        search_trends_tinnitus:text,
+        search_trends_tonsillitis:text,
+        search_trends_toothache:text,
+        search_trends_tremor:text,
+        search_trends_trichoptilosis:text,
+        search_trends_tumor:text,
+        search_trends_type_2_diabetes:text,
+        search_trends_unconsciousness:text,
+        search_trends_underweight:text,
+        search_trends_upper_respiratory_tract_infection:text,
+        search_trends_urethritis:text,
+        search_trends_urinary_incontinence:text,
+        search_trends_urinary_tract_infection:text,
+        search_trends_urinary_urgency:text,
+        search_trends_uterine_contraction:text,
+        search_trends_vaginal_bleeding:text,
+        search_trends_vaginal_discharge:text,
+        search_trends_vaginitis:text,
+        search_trends_varicose_veins:text,
+        search_trends_vasculitis:text,
+        search_trends_ventricular_fibrillation:text,
+        search_trends_ventricular_tachycardia:text,
+        search_trends_vertigo:text,
+        search_trends_viral_pneumonia:text,
+        search_trends_visual_acuity:text,
+        search_trends_vomiting:text,
+        search_trends_wart:text,
+        search_trends_water_retention:text,
+        search_trends_weakness:text,
+        search_trends_weight_gain:text,
+        search_trends_wheeze:text,
+        search_trends_xeroderma:text,
+        search_trends_xerostomia:text,
+        search_trends_yawn:text,
+        new_recovered_age_0:text,
+        new_recovered_age_1:text,
+        new_recovered_age_2:text,
+        new_recovered_age_3:text,
+        new_recovered_age_4:text,
+        new_recovered_age_5:text,
+        new_recovered_age_6:text,
+        new_recovered_age_7:text,
+        new_recovered_age_8:text,
+        new_recovered_age_9:text,
+        cumulative_recovered_age_0:text,
+        cumulative_recovered_age_1:text,
+        cumulative_recovered_age_2:text,
+        cumulative_recovered_age_3:text,
+        cumulative_recovered_age_4:text,
+        cumulative_recovered_age_5:text,
+        cumulative_recovered_age_6:text,
+        cumulative_recovered_age_7:text,
+        cumulative_recovered_age_8:text,
+        cumulative_recovered_age_9:text,
+        new_recovered_male:text,
+        new_recovered_female:text,
+        cumulative_recovered_male:text,
+        cumulative_recovered_female:text,
+        locality_code:text,
+        locality_name:text,
+        new_ventilator_patients:text,
+        cumulative_ventilator_patients:text,
+        new_persons_vaccinated_pfizer:text,
+        cumulative_persons_vaccinated_pfizer:text,
+        new_persons_fully_vaccinated_pfizer:text,
+        cumulative_persons_fully_vaccinated_pfizer:text,
+        new_persons_vaccinated_moderna:text,
+        cumulative_persons_vaccinated_moderna:text,
+        new_persons_fully_vaccinated_moderna:text,
+        cumulative_persons_fully_vaccinated_moderna:text,
+        new_persons_vaccinated_janssen:text,
+        cumulative_persons_vaccinated_janssen:text,
+        new_persons_fully_vaccinated_janssen:text,
+        cumulative_persons_fully_vaccinated_janssen:text,
+        new_persons_vaccinated_sinovac:text,
+        total_persons_vaccinated_sinovac:text,
+        new_vaccine_doses_administered_pfizer:text,
+        cumulative_vaccine_doses_administered_pfizer:text,
+        new_vaccine_doses_administered_moderna:text,
+        cumulative_vaccine_doses_administered_moderna:text,
+        new_vaccine_doses_administered_janssen:text,
+        cumulative_vaccine_doses_administered_janssen:text
+    )
+    FOLDER = '/base view'
+    TAGS (critical, technical_view)
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bn_covid_aggregated(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD location_key (any) OPT ANY
+             ADD date (any) OPT ANY
+             ADD place_id (any) OPT ANY
+             ADD wikidata_id (any) OPT ANY
+             ADD datacommons_id (any) OPT ANY
+             ADD country_code (any) OPT ANY
+             ADD country_name (any) OPT ANY
+             ADD iso_3166_1_alpha_2 (any) OPT ANY
+             ADD iso_3166_1_alpha_3 (any) OPT ANY
+             ADD aggregation_level (any) OPT ANY
+             ADD new_confirmed (any) OPT ANY
+             ADD new_deceased (any) OPT ANY
+             ADD cumulative_confirmed (any) OPT ANY
+             ADD cumulative_deceased (any) OPT ANY
+             ADD cumulative_tested (any) OPT ANY
+             ADD new_persons_vaccinated (any) OPT ANY
+             ADD cumulative_persons_vaccinated (any) OPT ANY
+             ADD new_persons_fully_vaccinated (any) OPT ANY
+             ADD cumulative_persons_fully_vaccinated (any) OPT ANY
+             ADD new_vaccine_doses_administered (any) OPT ANY
+             ADD cumulative_vaccine_doses_administered (any) OPT ANY
+             ADD population (any) OPT ANY
+             ADD population_male (any) OPT ANY
+             ADD population_female (any) OPT ANY
+             ADD population_rural (any) OPT ANY
+             ADD population_urban (any) OPT ANY
+             ADD population_density (any) OPT ANY
+             ADD human_development_index (any) OPT ANY
+             ADD population_age_00_09 (any) OPT ANY
+             ADD population_age_10_19 (any) OPT ANY
+             ADD population_age_20_29 (any) OPT ANY
+             ADD population_age_30_39 (any) OPT ANY
+             ADD population_age_40_49 (any) OPT ANY
+             ADD population_age_50_59 (any) OPT ANY
+             ADD population_age_60_69 (any) OPT ANY
+             ADD population_age_70_79 (any) OPT ANY
+             ADD population_age_80_and_older (any) OPT ANY
+             ADD gdp_usd (any) OPT ANY
+             ADD gdp_per_capita_usd (any) OPT ANY
+             ADD openstreetmap_id (any) OPT ANY
+             ADD latitude (any) OPT ANY
+             ADD longitude (any) OPT ANY
+             ADD area_sq_km (any) OPT ANY
+             ADD smoking_prevalence (any) OPT ANY
+             ADD diabetes_prevalence (any) OPT ANY
+             ADD infant_mortality_rate (any) OPT ANY
+             ADD nurses_per_1000 (any) OPT ANY
+             ADD physicians_per_1000 (any) OPT ANY
+             ADD health_expenditure_usd (any) OPT ANY
+             ADD out_of_pocket_health_expenditure_usd (any) OPT ANY
+             ADD school_closing (any) OPT ANY
+             ADD workplace_closing (any) OPT ANY
+             ADD cancel_public_events (any) OPT ANY
+             ADD restrictions_on_gatherings (any) OPT ANY
+             ADD public_transport_closing (any) OPT ANY
+             ADD stay_at_home_requirements (any) OPT ANY
+             ADD restrictions_on_internal_movement (any) OPT ANY
+             ADD international_travel_controls (any) OPT ANY
+             ADD income_support (any) OPT ANY
+             ADD debt_relief (any) OPT ANY
+             ADD fiscal_measures (any) OPT ANY
+             ADD international_support (any) OPT ANY
+             ADD public_information_campaigns (any) OPT ANY
+             ADD testing_policy (any) OPT ANY
+             ADD contact_tracing (any) OPT ANY
+             ADD emergency_investment_in_healthcare (any) OPT ANY
+             ADD investment_in_vaccines (any) OPT ANY
+             ADD facial_coverings (any) OPT ANY
+             ADD vaccination_policy (any) OPT ANY
+             ADD stringency_index (any) OPT ANY
+             ADD average_temperature_celsius (any) OPT ANY
+             ADD minimum_temperature_celsius (any) OPT ANY
+             ADD maximum_temperature_celsius (any) OPT ANY
+             ADD rainfall_mm (any) OPT ANY
+             ADD snowfall_mm (any) OPT ANY
+             ADD dew_point (any) OPT ANY
+             ADD relative_humidity (any) OPT ANY
+             ADD new_tested (any) OPT ANY
+             ADD population_largest_city (any) OPT ANY
+             ADD population_clustered (any) OPT ANY
+             ADD human_capital_index (any) OPT ANY
+             ADD area_rural_sq_km (any) OPT ANY
+             ADD area_urban_sq_km (any) OPT ANY
+             ADD life_expectancy (any) OPT ANY
+             ADD adult_male_mortality_rate (any) OPT ANY
+             ADD adult_female_mortality_rate (any) OPT ANY
+             ADD pollution_mortality_rate (any) OPT ANY
+             ADD comorbidity_mortality_rate (any) OPT ANY
+             ADD mobility_retail_and_recreation (any) OPT ANY
+             ADD mobility_grocery_and_pharmacy (any) OPT ANY
+             ADD mobility_parks (any) OPT ANY
+             ADD mobility_transit_stations (any) OPT ANY
+             ADD mobility_workplaces (any) OPT ANY
+             ADD mobility_residential (any) OPT ANY
+             ADD hospital_beds_per_1000 (any) OPT ANY
+             ADD subregion1_code (any) OPT ANY
+             ADD subregion1_name (any) OPT ANY
+             ADD new_recovered (any) OPT ANY
+             ADD cumulative_recovered (any) OPT ANY
+             ADD elevation_m (any) OPT ANY
+             ADD new_hospitalized_patients (any) OPT ANY
+             ADD cumulative_hospitalized_patients (any) OPT ANY
+             ADD new_intensive_care_patients (any) OPT ANY
+             ADD cumulative_intensive_care_patients (any) OPT ANY
+             ADD new_confirmed_age_0 (any) OPT ANY
+             ADD new_confirmed_age_1 (any) OPT ANY
+             ADD new_confirmed_age_2 (any) OPT ANY
+             ADD new_confirmed_age_3 (any) OPT ANY
+             ADD new_confirmed_age_4 (any) OPT ANY
+             ADD new_confirmed_age_5 (any) OPT ANY
+             ADD new_confirmed_age_6 (any) OPT ANY
+             ADD new_confirmed_age_7 (any) OPT ANY
+             ADD new_confirmed_age_8 (any) OPT ANY
+             ADD new_confirmed_age_9 (any) OPT ANY
+             ADD cumulative_confirmed_age_0 (any) OPT ANY
+             ADD cumulative_confirmed_age_1 (any) OPT ANY
+             ADD cumulative_confirmed_age_2 (any) OPT ANY
+             ADD cumulative_confirmed_age_3 (any) OPT ANY
+             ADD cumulative_confirmed_age_4 (any) OPT ANY
+             ADD cumulative_confirmed_age_5 (any) OPT ANY
+             ADD cumulative_confirmed_age_6 (any) OPT ANY
+             ADD cumulative_confirmed_age_7 (any) OPT ANY
+             ADD cumulative_confirmed_age_8 (any) OPT ANY
+             ADD cumulative_confirmed_age_9 (any) OPT ANY
+             ADD new_deceased_age_0 (any) OPT ANY
+             ADD new_deceased_age_1 (any) OPT ANY
+             ADD new_deceased_age_2 (any) OPT ANY
+             ADD new_deceased_age_3 (any) OPT ANY
+             ADD new_deceased_age_4 (any) OPT ANY
+             ADD new_deceased_age_5 (any) OPT ANY
+             ADD new_deceased_age_6 (any) OPT ANY
+             ADD new_deceased_age_7 (any) OPT ANY
+             ADD new_deceased_age_8 (any) OPT ANY
+             ADD new_deceased_age_9 (any) OPT ANY
+             ADD cumulative_deceased_age_0 (any) OPT ANY
+             ADD cumulative_deceased_age_1 (any) OPT ANY
+             ADD cumulative_deceased_age_2 (any) OPT ANY
+             ADD cumulative_deceased_age_3 (any) OPT ANY
+             ADD cumulative_deceased_age_4 (any) OPT ANY
+             ADD cumulative_deceased_age_5 (any) OPT ANY
+             ADD cumulative_deceased_age_6 (any) OPT ANY
+             ADD cumulative_deceased_age_7 (any) OPT ANY
+             ADD cumulative_deceased_age_8 (any) OPT ANY
+             ADD cumulative_deceased_age_9 (any) OPT ANY
+             ADD new_tested_age_0 (any) OPT ANY
+             ADD new_tested_age_1 (any) OPT ANY
+             ADD new_tested_age_2 (any) OPT ANY
+             ADD new_tested_age_3 (any) OPT ANY
+             ADD new_tested_age_4 (any) OPT ANY
+             ADD new_tested_age_5 (any) OPT ANY
+             ADD new_tested_age_6 (any) OPT ANY
+             ADD new_tested_age_7 (any) OPT ANY
+             ADD new_tested_age_8 (any) OPT ANY
+             ADD new_tested_age_9 (any) OPT ANY
+             ADD cumulative_tested_age_0 (any) OPT ANY
+             ADD cumulative_tested_age_1 (any) OPT ANY
+             ADD cumulative_tested_age_2 (any) OPT ANY
+             ADD cumulative_tested_age_3 (any) OPT ANY
+             ADD cumulative_tested_age_4 (any) OPT ANY
+             ADD cumulative_tested_age_5 (any) OPT ANY
+             ADD cumulative_tested_age_6 (any) OPT ANY
+             ADD cumulative_tested_age_7 (any) OPT ANY
+             ADD cumulative_tested_age_8 (any) OPT ANY
+             ADD cumulative_tested_age_9 (any) OPT ANY
+             ADD new_hospitalized_patients_age_0 (any) OPT ANY
+             ADD new_hospitalized_patients_age_1 (any) OPT ANY
+             ADD new_hospitalized_patients_age_2 (any) OPT ANY
+             ADD new_hospitalized_patients_age_3 (any) OPT ANY
+             ADD new_hospitalized_patients_age_4 (any) OPT ANY
+             ADD new_hospitalized_patients_age_5 (any) OPT ANY
+             ADD new_hospitalized_patients_age_6 (any) OPT ANY
+             ADD new_hospitalized_patients_age_7 (any) OPT ANY
+             ADD new_hospitalized_patients_age_8 (any) OPT ANY
+             ADD new_hospitalized_patients_age_9 (any) OPT ANY
+             ADD cumulative_hospitalized_patients_age_0 (any) OPT ANY
+             ADD cumulative_hospitalized_patients_age_1 (any) OPT ANY
+             ADD cumulative_hospitalized_patients_age_2 (any) OPT ANY
+             ADD cumulative_hospitalized_patients_age_3 (any) OPT ANY
+             ADD cumulative_hospitalized_patients_age_4 (any) OPT ANY
+             ADD cumulative_hospitalized_patients_age_5 (any) OPT ANY
+             ADD cumulative_hospitalized_patients_age_6 (any) OPT ANY
+             ADD cumulative_hospitalized_patients_age_7 (any) OPT ANY
+             ADD cumulative_hospitalized_patients_age_8 (any) OPT ANY
+             ADD cumulative_hospitalized_patients_age_9 (any) OPT ANY
+             ADD new_intensive_care_patients_age_0 (any) OPT ANY
+             ADD new_intensive_care_patients_age_1 (any) OPT ANY
+             ADD new_intensive_care_patients_age_2 (any) OPT ANY
+             ADD new_intensive_care_patients_age_3 (any) OPT ANY
+             ADD new_intensive_care_patients_age_4 (any) OPT ANY
+             ADD new_intensive_care_patients_age_5 (any) OPT ANY
+             ADD new_intensive_care_patients_age_6 (any) OPT ANY
+             ADD new_intensive_care_patients_age_7 (any) OPT ANY
+             ADD new_intensive_care_patients_age_8 (any) OPT ANY
+             ADD new_intensive_care_patients_age_9 (any) OPT ANY
+             ADD cumulative_intensive_care_patients_age_0 (any) OPT ANY
+             ADD cumulative_intensive_care_patients_age_1 (any) OPT ANY
+             ADD cumulative_intensive_care_patients_age_2 (any) OPT ANY
+             ADD cumulative_intensive_care_patients_age_3 (any) OPT ANY
+             ADD cumulative_intensive_care_patients_age_4 (any) OPT ANY
+             ADD cumulative_intensive_care_patients_age_5 (any) OPT ANY
+             ADD cumulative_intensive_care_patients_age_6 (any) OPT ANY
+             ADD cumulative_intensive_care_patients_age_7 (any) OPT ANY
+             ADD cumulative_intensive_care_patients_age_8 (any) OPT ANY
+             ADD cumulative_intensive_care_patients_age_9 (any) OPT ANY
+             ADD age_bin_0 (any) OPT ANY
+             ADD age_bin_1 (any) OPT ANY
+             ADD age_bin_2 (any) OPT ANY
+             ADD age_bin_3 (any) OPT ANY
+             ADD age_bin_4 (any) OPT ANY
+             ADD age_bin_5 (any) OPT ANY
+             ADD age_bin_6 (any) OPT ANY
+             ADD age_bin_7 (any) OPT ANY
+             ADD age_bin_8 (any) OPT ANY
+             ADD age_bin_9 (any) OPT ANY
+             ADD new_confirmed_male (any) OPT ANY
+             ADD new_confirmed_female (any) OPT ANY
+             ADD cumulative_confirmed_male (any) OPT ANY
+             ADD cumulative_confirmed_female (any) OPT ANY
+             ADD new_deceased_male (any) OPT ANY
+             ADD new_deceased_female (any) OPT ANY
+             ADD cumulative_deceased_male (any) OPT ANY
+             ADD cumulative_deceased_female (any) OPT ANY
+             ADD new_tested_male (any) OPT ANY
+             ADD new_tested_female (any) OPT ANY
+             ADD cumulative_tested_male (any) OPT ANY
+             ADD cumulative_tested_female (any) OPT ANY
+             ADD new_hospitalized_patients_male (any) OPT ANY
+             ADD new_hospitalized_patients_female (any) OPT ANY
+             ADD cumulative_hospitalized_patients_male (any) OPT ANY
+             ADD cumulative_hospitalized_patients_female (any) OPT ANY
+             ADD new_intensive_care_patients_male (any) OPT ANY
+             ADD new_intensive_care_patients_female (any) OPT ANY
+             ADD cumulative_intensive_care_patients_male (any) OPT ANY
+             ADD cumulative_intensive_care_patients_female (any) OPT ANY
+             ADD subregion2_code (any) OPT ANY
+             ADD subregion2_name (any) OPT ANY
+             ADD current_hospitalized_patients (any) OPT ANY
+             ADD current_intensive_care_patients (any) OPT ANY
+             ADD current_ventilator_patients (any) OPT ANY
+             ADD search_trends_abdominal_obesity (any) OPT ANY
+             ADD search_trends_abdominal_pain (any) OPT ANY
+             ADD search_trends_acne (any) OPT ANY
+             ADD search_trends_actinic_keratosis (any) OPT ANY
+             ADD search_trends_acute_bronchitis (any) OPT ANY
+             ADD search_trends_adrenal_crisis (any) OPT ANY
+             ADD search_trends_ageusia (any) OPT ANY
+             ADD search_trends_alcoholism (any) OPT ANY
+             ADD search_trends_allergic_conjunctivitis (any) OPT ANY
+             ADD search_trends_allergy (any) OPT ANY
+             ADD search_trends_amblyopia (any) OPT ANY
+             ADD search_trends_amenorrhea (any) OPT ANY
+             ADD search_trends_amnesia (any) OPT ANY
+             ADD search_trends_anal_fissure (any) OPT ANY
+             ADD search_trends_anaphylaxis (any) OPT ANY
+             ADD search_trends_anemia (any) OPT ANY
+             ADD search_trends_angina_pectoris (any) OPT ANY
+             ADD search_trends_angioedema (any) OPT ANY
+             ADD search_trends_angular_cheilitis (any) OPT ANY
+             ADD search_trends_anosmia (any) OPT ANY
+             ADD search_trends_anxiety (any) OPT ANY
+             ADD search_trends_aphasia (any) OPT ANY
+             ADD search_trends_aphonia (any) OPT ANY
+             ADD search_trends_apnea (any) OPT ANY
+             ADD search_trends_arthralgia (any) OPT ANY
+             ADD search_trends_arthritis (any) OPT ANY
+             ADD search_trends_ascites (any) OPT ANY
+             ADD search_trends_asperger_syndrome (any) OPT ANY
+             ADD search_trends_asphyxia (any) OPT ANY
+             ADD search_trends_asthma (any) OPT ANY
+             ADD search_trends_astigmatism (any) OPT ANY
+             ADD search_trends_ataxia (any) OPT ANY
+             ADD search_trends_atheroma (any) OPT ANY
+             ADD search_trends_attention_deficit_hyperactivity_disorder (any) OPT ANY
+             ADD search_trends_auditory_hallucination (any) OPT ANY
+             ADD search_trends_autoimmune_disease (any) OPT ANY
+             ADD search_trends_avoidant_personality_disorder (any) OPT ANY
+             ADD search_trends_back_pain (any) OPT ANY
+             ADD search_trends_bacterial_vaginosis (any) OPT ANY
+             ADD search_trends_balance_disorder (any) OPT ANY
+             ADD search_trends_beaus_lines (any) OPT ANY
+             ADD search_trends_bells_palsy (any) OPT ANY
+             ADD search_trends_biliary_colic (any) OPT ANY
+             ADD search_trends_binge_eating (any) OPT ANY
+             ADD search_trends_bleeding (any) OPT ANY
+             ADD search_trends_bleeding_on_probing (any) OPT ANY
+             ADD search_trends_blepharospasm (any) OPT ANY
+             ADD search_trends_bloating (any) OPT ANY
+             ADD search_trends_blood_in_stool (any) OPT ANY
+             ADD search_trends_blurred_vision (any) OPT ANY
+             ADD search_trends_blushing (any) OPT ANY
+             ADD search_trends_boil (any) OPT ANY
+             ADD search_trends_bone_fracture (any) OPT ANY
+             ADD search_trends_bone_tumor (any) OPT ANY
+             ADD search_trends_bowel_obstruction (any) OPT ANY
+             ADD search_trends_bradycardia (any) OPT ANY
+             ADD search_trends_braxton_hicks_contractions (any) OPT ANY
+             ADD search_trends_breakthrough_bleeding (any) OPT ANY
+             ADD search_trends_breast_pain (any) OPT ANY
+             ADD search_trends_bronchitis (any) OPT ANY
+             ADD search_trends_bruise (any) OPT ANY
+             ADD search_trends_bruxism (any) OPT ANY
+             ADD search_trends_bunion (any) OPT ANY
+             ADD search_trends_burn (any) OPT ANY
+             ADD search_trends_burning_chest_pain (any) OPT ANY
+             ADD search_trends_burning_mouth_syndrome (any) OPT ANY
+             ADD search_trends_candidiasis (any) OPT ANY
+             ADD search_trends_canker_sore (any) OPT ANY
+             ADD search_trends_cardiac_arrest (any) OPT ANY
+             ADD search_trends_carpal_tunnel_syndrome (any) OPT ANY
+             ADD search_trends_cataplexy (any) OPT ANY
+             ADD search_trends_cataract (any) OPT ANY
+             ADD search_trends_chancre (any) OPT ANY
+             ADD search_trends_cheilitis (any) OPT ANY
+             ADD search_trends_chest_pain (any) OPT ANY
+             ADD search_trends_chills (any) OPT ANY
+             ADD search_trends_chorea (any) OPT ANY
+             ADD search_trends_chronic_pain (any) OPT ANY
+             ADD search_trends_cirrhosis (any) OPT ANY
+             ADD search_trends_cleft_lip_and_cleft_palate (any) OPT ANY
+             ADD search_trends_clouding_of_consciousness (any) OPT ANY
+             ADD search_trends_cluster_headache (any) OPT ANY
+             ADD search_trends_colitis (any) OPT ANY
+             ADD search_trends_coma (any) OPT ANY
+             ADD search_trends_common_cold (any) OPT ANY
+             ADD search_trends_compulsive_behavior (any) OPT ANY
+             ADD search_trends_compulsive_hoarding (any) OPT ANY
+             ADD search_trends_confusion (any) OPT ANY
+             ADD search_trends_congenital_heart_defect (any) OPT ANY
+             ADD search_trends_conjunctivitis (any) OPT ANY
+             ADD search_trends_constipation (any) OPT ANY
+             ADD search_trends_convulsion (any) OPT ANY
+             ADD search_trends_cough (any) OPT ANY
+             ADD search_trends_crackles (any) OPT ANY
+             ADD search_trends_cramp (any) OPT ANY
+             ADD search_trends_crepitus (any) OPT ANY
+             ADD search_trends_croup (any) OPT ANY
+             ADD search_trends_cyanosis (any) OPT ANY
+             ADD search_trends_dandruff (any) OPT ANY
+             ADD search_trends_delayed_onset_muscle_soreness (any) OPT ANY
+             ADD search_trends_dementia (any) OPT ANY
+             ADD search_trends_dentin_hypersensitivity (any) OPT ANY
+             ADD search_trends_depersonalization (any) OPT ANY
+             ADD search_trends_depression (any) OPT ANY
+             ADD search_trends_dermatitis (any) OPT ANY
+             ADD search_trends_desquamation (any) OPT ANY
+             ADD search_trends_developmental_disability (any) OPT ANY
+             ADD search_trends_diabetes (any) OPT ANY
+             ADD search_trends_diabetic_ketoacidosis (any) OPT ANY
+             ADD search_trends_diarrhea (any) OPT ANY
+             ADD search_trends_dizziness (any) OPT ANY
+             ADD search_trends_dry_eye_syndrome (any) OPT ANY
+             ADD search_trends_dysautonomia (any) OPT ANY
+             ADD search_trends_dysgeusia (any) OPT ANY
+             ADD search_trends_dysmenorrhea (any) OPT ANY
+             ADD search_trends_dyspareunia (any) OPT ANY
+             ADD search_trends_dysphagia (any) OPT ANY
+             ADD search_trends_dysphoria (any) OPT ANY
+             ADD search_trends_dystonia (any) OPT ANY
+             ADD search_trends_dysuria (any) OPT ANY
+             ADD search_trends_ear_pain (any) OPT ANY
+             ADD search_trends_eczema (any) OPT ANY
+             ADD search_trends_edema (any) OPT ANY
+             ADD search_trends_encephalitis (any) OPT ANY
+             ADD search_trends_encephalopathy (any) OPT ANY
+             ADD search_trends_epidermoid_cyst (any) OPT ANY
+             ADD search_trends_epilepsy (any) OPT ANY
+             ADD search_trends_epiphora (any) OPT ANY
+             ADD search_trends_erectile_dysfunction (any) OPT ANY
+             ADD search_trends_erythema (any) OPT ANY
+             ADD search_trends_erythema_chronicum_migrans (any) OPT ANY
+             ADD search_trends_esophagitis (any) OPT ANY
+             ADD search_trends_excessive_daytime_sleepiness (any) OPT ANY
+             ADD search_trends_eye_pain (any) OPT ANY
+             ADD search_trends_eye_strain (any) OPT ANY
+             ADD search_trends_facial_nerve_paralysis (any) OPT ANY
+             ADD search_trends_facial_swelling (any) OPT ANY
+             ADD search_trends_fasciculation (any) OPT ANY
+             ADD search_trends_fatigue (any) OPT ANY
+             ADD search_trends_fatty_liver_disease (any) OPT ANY
+             ADD search_trends_fecal_incontinence (any) OPT ANY
+             ADD search_trends_fever (any) OPT ANY
+             ADD search_trends_fibrillation (any) OPT ANY
+             ADD search_trends_fibrocystic_breast_changes (any) OPT ANY
+             ADD search_trends_fibromyalgia (any) OPT ANY
+             ADD search_trends_flatulence (any) OPT ANY
+             ADD search_trends_floater (any) OPT ANY
+             ADD search_trends_focal_seizure (any) OPT ANY
+             ADD search_trends_folate_deficiency (any) OPT ANY
+             ADD search_trends_food_craving (any) OPT ANY
+             ADD search_trends_food_intolerance (any) OPT ANY
+             ADD search_trends_frequent_urination (any) OPT ANY
+             ADD search_trends_gastroesophageal_reflux_disease (any) OPT ANY
+             ADD search_trends_gastroparesis (any) OPT ANY
+             ADD search_trends_generalized_anxiety_disorder (any) OPT ANY
+             ADD search_trends_genital_wart (any) OPT ANY
+             ADD search_trends_gingival_recession (any) OPT ANY
+             ADD search_trends_gingivitis (any) OPT ANY
+             ADD search_trends_globus_pharyngis (any) OPT ANY
+             ADD search_trends_goitre (any) OPT ANY
+             ADD search_trends_gout (any) OPT ANY
+             ADD search_trends_grandiosity (any) OPT ANY
+             ADD search_trends_granuloma (any) OPT ANY
+             ADD search_trends_guilt (any) OPT ANY
+             ADD search_trends_hair_loss (any) OPT ANY
+             ADD search_trends_halitosis (any) OPT ANY
+             ADD search_trends_hay_fever (any) OPT ANY
+             ADD search_trends_headache (any) OPT ANY
+             ADD search_trends_heart_arrhythmia (any) OPT ANY
+             ADD search_trends_heart_murmur (any) OPT ANY
+             ADD search_trends_heartburn (any) OPT ANY
+             ADD search_trends_hematochezia (any) OPT ANY
+             ADD search_trends_hematoma (any) OPT ANY
+             ADD search_trends_hematuria (any) OPT ANY
+             ADD search_trends_hemolysis (any) OPT ANY
+             ADD search_trends_hemoptysis (any) OPT ANY
+             ADD search_trends_hemorrhoids (any) OPT ANY
+             ADD search_trends_hepatic_encephalopathy (any) OPT ANY
+             ADD search_trends_hepatitis (any) OPT ANY
+             ADD search_trends_hepatotoxicity (any) OPT ANY
+             ADD search_trends_hiccup (any) OPT ANY
+             ADD search_trends_hip_pain (any) OPT ANY
+             ADD search_trends_hives (any) OPT ANY
+             ADD search_trends_hot_flash (any) OPT ANY
+             ADD search_trends_hydrocephalus (any) OPT ANY
+             ADD search_trends_hypercalcaemia (any) OPT ANY
+             ADD search_trends_hypercapnia (any) OPT ANY
+             ADD search_trends_hypercholesterolemia (any) OPT ANY
+             ADD search_trends_hyperemesis_gravidarum (any) OPT ANY
+             ADD search_trends_hyperglycemia (any) OPT ANY
+             ADD search_trends_hyperhidrosis (any) OPT ANY
+             ADD search_trends_hyperkalemia (any) OPT ANY
+             ADD search_trends_hyperlipidemia (any) OPT ANY
+             ADD search_trends_hypermobility (any) OPT ANY
+             ADD search_trends_hyperpigmentation (any) OPT ANY
+             ADD search_trends_hypersomnia (any) OPT ANY
+             ADD search_trends_hypertension (any) OPT ANY
+             ADD search_trends_hyperthermia (any) OPT ANY
+             ADD search_trends_hyperthyroidism (any) OPT ANY
+             ADD search_trends_hypertriglyceridemia (any) OPT ANY
+             ADD search_trends_hypertrophy (any) OPT ANY
+             ADD search_trends_hyperventilation (any) OPT ANY
+             ADD search_trends_hypocalcaemia (any) OPT ANY
+             ADD search_trends_hypochondriasis (any) OPT ANY
+             ADD search_trends_hypoglycemia (any) OPT ANY
+             ADD search_trends_hypogonadism (any) OPT ANY
+             ADD search_trends_hypokalemia (any) OPT ANY
+             ADD search_trends_hypomania (any) OPT ANY
+             ADD search_trends_hyponatremia (any) OPT ANY
+             ADD search_trends_hypotension (any) OPT ANY
+             ADD search_trends_hypothyroidism (any) OPT ANY
+             ADD search_trends_hypoxemia (any) OPT ANY
+             ADD search_trends_hypoxia (any) OPT ANY
+             ADD search_trends_impetigo (any) OPT ANY
+             ADD search_trends_implantation_bleeding (any) OPT ANY
+             ADD search_trends_impulsivity (any) OPT ANY
+             ADD search_trends_indigestion (any) OPT ANY
+             ADD search_trends_infection (any) OPT ANY
+             ADD search_trends_inflammation (any) OPT ANY
+             ADD search_trends_inflammatory_bowel_disease (any) OPT ANY
+             ADD search_trends_ingrown_hair (any) OPT ANY
+             ADD search_trends_insomnia (any) OPT ANY
+             ADD search_trends_insulin_resistance (any) OPT ANY
+             ADD search_trends_intermenstrual_bleeding (any) OPT ANY
+             ADD search_trends_intracranial_pressure (any) OPT ANY
+             ADD search_trends_iron_deficiency (any) OPT ANY
+             ADD search_trends_irregular_menstruation (any) OPT ANY
+             ADD search_trends_itch (any) OPT ANY
+             ADD search_trends_jaundice (any) OPT ANY
+             ADD search_trends_kidney_failure (any) OPT ANY
+             ADD search_trends_kidney_stone (any) OPT ANY
+             ADD search_trends_knee_pain (any) OPT ANY
+             ADD search_trends_kyphosis (any) OPT ANY
+             ADD search_trends_lactose_intolerance (any) OPT ANY
+             ADD search_trends_laryngitis (any) OPT ANY
+             ADD search_trends_leg_cramps (any) OPT ANY
+             ADD search_trends_lesion (any) OPT ANY
+             ADD search_trends_leukorrhea (any) OPT ANY
+             ADD search_trends_lightheadedness (any) OPT ANY
+             ADD search_trends_low_back_pain (any) OPT ANY
+             ADD search_trends_low_grade_fever (any) OPT ANY
+             ADD search_trends_lymphedema (any) OPT ANY
+             ADD search_trends_major_depressive_disorder (any) OPT ANY
+             ADD search_trends_malabsorption (any) OPT ANY
+             ADD search_trends_male_infertility (any) OPT ANY
+             ADD search_trends_manic_disorder (any) OPT ANY
+             ADD search_trends_melasma (any) OPT ANY
+             ADD search_trends_melena (any) OPT ANY
+             ADD search_trends_meningitis (any) OPT ANY
+             ADD search_trends_menorrhagia (any) OPT ANY
+             ADD search_trends_middle_back_pain (any) OPT ANY
+             ADD search_trends_migraine (any) OPT ANY
+             ADD search_trends_milium (any) OPT ANY
+             ADD search_trends_mitral_insufficiency (any) OPT ANY
+             ADD search_trends_mood_disorder (any) OPT ANY
+             ADD search_trends_mood_swing (any) OPT ANY
+             ADD search_trends_morning_sickness (any) OPT ANY
+             ADD search_trends_motion_sickness (any) OPT ANY
+             ADD search_trends_mouth_ulcer (any) OPT ANY
+             ADD search_trends_muscle_atrophy (any) OPT ANY
+             ADD search_trends_muscle_weakness (any) OPT ANY
+             ADD search_trends_myalgia (any) OPT ANY
+             ADD search_trends_mydriasis (any) OPT ANY
+             ADD search_trends_myocardial_infarction (any) OPT ANY
+             ADD search_trends_myoclonus (any) OPT ANY
+             ADD search_trends_nasal_congestion (any) OPT ANY
+             ADD search_trends_nasal_polyp (any) OPT ANY
+             ADD search_trends_nausea (any) OPT ANY
+             ADD search_trends_neck_mass (any) OPT ANY
+             ADD search_trends_neck_pain (any) OPT ANY
+             ADD search_trends_neonatal_jaundice (any) OPT ANY
+             ADD search_trends_nerve_injury (any) OPT ANY
+             ADD search_trends_neuralgia (any) OPT ANY
+             ADD search_trends_neutropenia (any) OPT ANY
+             ADD search_trends_night_sweats (any) OPT ANY
+             ADD search_trends_night_terror (any) OPT ANY
+             ADD search_trends_nocturnal_enuresis (any) OPT ANY
+             ADD search_trends_nodule (any) OPT ANY
+             ADD search_trends_nosebleed (any) OPT ANY
+             ADD search_trends_nystagmus (any) OPT ANY
+             ADD search_trends_obesity (any) OPT ANY
+             ADD search_trends_onychorrhexis (any) OPT ANY
+             ADD search_trends_oral_candidiasis (any) OPT ANY
+             ADD search_trends_orthostatic_hypotension (any) OPT ANY
+             ADD search_trends_osteopenia (any) OPT ANY
+             ADD search_trends_osteophyte (any) OPT ANY
+             ADD search_trends_osteoporosis (any) OPT ANY
+             ADD search_trends_otitis (any) OPT ANY
+             ADD search_trends_otitis_externa (any) OPT ANY
+             ADD search_trends_otitis_media (any) OPT ANY
+             ADD search_trends_pain (any) OPT ANY
+             ADD search_trends_palpitations (any) OPT ANY
+             ADD search_trends_pancreatitis (any) OPT ANY
+             ADD search_trends_panic_attack (any) OPT ANY
+             ADD search_trends_papule (any) OPT ANY
+             ADD search_trends_paranoia (any) OPT ANY
+             ADD search_trends_paresthesia (any) OPT ANY
+             ADD search_trends_pelvic_inflammatory_disease (any) OPT ANY
+             ADD search_trends_pericarditis (any) OPT ANY
+             ADD search_trends_periodontal_disease (any) OPT ANY
+             ADD search_trends_periorbital_puffiness (any) OPT ANY
+             ADD search_trends_peripheral_neuropathy (any) OPT ANY
+             ADD search_trends_perspiration (any) OPT ANY
+             ADD search_trends_petechia (any) OPT ANY
+             ADD search_trends_phlegm (any) OPT ANY
+             ADD search_trends_photodermatitis (any) OPT ANY
+             ADD search_trends_photophobia (any) OPT ANY
+             ADD search_trends_photopsia (any) OPT ANY
+             ADD search_trends_pleural_effusion (any) OPT ANY
+             ADD search_trends_pleurisy (any) OPT ANY
+             ADD search_trends_pneumonia (any) OPT ANY
+             ADD search_trends_podalgia (any) OPT ANY
+             ADD search_trends_polycythemia (any) OPT ANY
+             ADD search_trends_polydipsia (any) OPT ANY
+             ADD search_trends_polyneuropathy (any) OPT ANY
+             ADD search_trends_polyuria (any) OPT ANY
+             ADD search_trends_poor_posture (any) OPT ANY
+             ADD search_trends_post_nasal_drip (any) OPT ANY
+             ADD search_trends_postural_orthostatic_tachycardia_syndrome (any) OPT ANY
+             ADD search_trends_prediabetes (any) OPT ANY
+             ADD search_trends_proteinuria (any) OPT ANY
+             ADD search_trends_pruritus_ani (any) OPT ANY
+             ADD search_trends_psychosis (any) OPT ANY
+             ADD search_trends_ptosis (any) OPT ANY
+             ADD search_trends_pulmonary_edema (any) OPT ANY
+             ADD search_trends_pulmonary_hypertension (any) OPT ANY
+             ADD search_trends_purpura (any) OPT ANY
+             ADD search_trends_pus (any) OPT ANY
+             ADD search_trends_pyelonephritis (any) OPT ANY
+             ADD search_trends_radiculopathy (any) OPT ANY
+             ADD search_trends_rectal_pain (any) OPT ANY
+             ADD search_trends_rectal_prolapse (any) OPT ANY
+             ADD search_trends_red_eye (any) OPT ANY
+             ADD search_trends_renal_colic (any) OPT ANY
+             ADD search_trends_restless_legs_syndrome (any) OPT ANY
+             ADD search_trends_rheum (any) OPT ANY
+             ADD search_trends_rhinitis (any) OPT ANY
+             ADD search_trends_rhinorrhea (any) OPT ANY
+             ADD search_trends_rosacea (any) OPT ANY
+             ADD search_trends_round_ligament_pain (any) OPT ANY
+             ADD search_trends_rumination (any) OPT ANY
+             ADD search_trends_scar (any) OPT ANY
+             ADD search_trends_sciatica (any) OPT ANY
+             ADD search_trends_scoliosis (any) OPT ANY
+             ADD search_trends_seborrheic_dermatitis (any) OPT ANY
+             ADD search_trends_self_harm (any) OPT ANY
+             ADD search_trends_sensitivity_to_sound (any) OPT ANY
+             ADD search_trends_sexual_dysfunction (any) OPT ANY
+             ADD search_trends_shallow_breathing (any) OPT ANY
+             ADD search_trends_sharp_pain (any) OPT ANY
+             ADD search_trends_shivering (any) OPT ANY
+             ADD search_trends_shortness_of_breath (any) OPT ANY
+             ADD search_trends_shyness (any) OPT ANY
+             ADD search_trends_sinusitis (any) OPT ANY
+             ADD search_trends_skin_condition (any) OPT ANY
+             ADD search_trends_skin_rash (any) OPT ANY
+             ADD search_trends_skin_tag (any) OPT ANY
+             ADD search_trends_skin_ulcer (any) OPT ANY
+             ADD search_trends_sleep_apnea (any) OPT ANY
+             ADD search_trends_sleep_deprivation (any) OPT ANY
+             ADD search_trends_sleep_disorder (any) OPT ANY
+             ADD search_trends_snoring (any) OPT ANY
+             ADD search_trends_sore_throat (any) OPT ANY
+             ADD search_trends_spasticity (any) OPT ANY
+             ADD search_trends_splenomegaly (any) OPT ANY
+             ADD search_trends_sputum (any) OPT ANY
+             ADD search_trends_stomach_rumble (any) OPT ANY
+             ADD search_trends_strabismus (any) OPT ANY
+             ADD search_trends_stretch_marks (any) OPT ANY
+             ADD search_trends_stridor (any) OPT ANY
+             ADD search_trends_stroke (any) OPT ANY
+             ADD search_trends_stuttering (any) OPT ANY
+             ADD search_trends_subdural_hematoma (any) OPT ANY
+             ADD search_trends_suicidal_ideation (any) OPT ANY
+             ADD search_trends_swelling (any) OPT ANY
+             ADD search_trends_swollen_feet (any) OPT ANY
+             ADD search_trends_swollen_lymph_nodes (any) OPT ANY
+             ADD search_trends_syncope (any) OPT ANY
+             ADD search_trends_tachycardia (any) OPT ANY
+             ADD search_trends_tachypnea (any) OPT ANY
+             ADD search_trends_telangiectasia (any) OPT ANY
+             ADD search_trends_tenderness (any) OPT ANY
+             ADD search_trends_testicular_pain (any) OPT ANY
+             ADD search_trends_throat_irritation (any) OPT ANY
+             ADD search_trends_thrombocytopenia (any) OPT ANY
+             ADD search_trends_thyroid_nodule (any) OPT ANY
+             ADD search_trends_tic (any) OPT ANY
+             ADD search_trends_tinnitus (any) OPT ANY
+             ADD search_trends_tonsillitis (any) OPT ANY
+             ADD search_trends_toothache (any) OPT ANY
+             ADD search_trends_tremor (any) OPT ANY
+             ADD search_trends_trichoptilosis (any) OPT ANY
+             ADD search_trends_tumor (any) OPT ANY
+             ADD search_trends_type_2_diabetes (any) OPT ANY
+             ADD search_trends_unconsciousness (any) OPT ANY
+             ADD search_trends_underweight (any) OPT ANY
+             ADD search_trends_upper_respiratory_tract_infection (any) OPT ANY
+             ADD search_trends_urethritis (any) OPT ANY
+             ADD search_trends_urinary_incontinence (any) OPT ANY
+             ADD search_trends_urinary_tract_infection (any) OPT ANY
+             ADD search_trends_urinary_urgency (any) OPT ANY
+             ADD search_trends_uterine_contraction (any) OPT ANY
+             ADD search_trends_vaginal_bleeding (any) OPT ANY
+             ADD search_trends_vaginal_discharge (any) OPT ANY
+             ADD search_trends_vaginitis (any) OPT ANY
+             ADD search_trends_varicose_veins (any) OPT ANY
+             ADD search_trends_vasculitis (any) OPT ANY
+             ADD search_trends_ventricular_fibrillation (any) OPT ANY
+             ADD search_trends_ventricular_tachycardia (any) OPT ANY
+             ADD search_trends_vertigo (any) OPT ANY
+             ADD search_trends_viral_pneumonia (any) OPT ANY
+             ADD search_trends_visual_acuity (any) OPT ANY
+             ADD search_trends_vomiting (any) OPT ANY
+             ADD search_trends_wart (any) OPT ANY
+             ADD search_trends_water_retention (any) OPT ANY
+             ADD search_trends_weakness (any) OPT ANY
+             ADD search_trends_weight_gain (any) OPT ANY
+             ADD search_trends_wheeze (any) OPT ANY
+             ADD search_trends_xeroderma (any) OPT ANY
+             ADD search_trends_xerostomia (any) OPT ANY
+             ADD search_trends_yawn (any) OPT ANY
+             ADD new_recovered_age_0 (any) OPT ANY
+             ADD new_recovered_age_1 (any) OPT ANY
+             ADD new_recovered_age_2 (any) OPT ANY
+             ADD new_recovered_age_3 (any) OPT ANY
+             ADD new_recovered_age_4 (any) OPT ANY
+             ADD new_recovered_age_5 (any) OPT ANY
+             ADD new_recovered_age_6 (any) OPT ANY
+             ADD new_recovered_age_7 (any) OPT ANY
+             ADD new_recovered_age_8 (any) OPT ANY
+             ADD new_recovered_age_9 (any) OPT ANY
+             ADD cumulative_recovered_age_0 (any) OPT ANY
+             ADD cumulative_recovered_age_1 (any) OPT ANY
+             ADD cumulative_recovered_age_2 (any) OPT ANY
+             ADD cumulative_recovered_age_3 (any) OPT ANY
+             ADD cumulative_recovered_age_4 (any) OPT ANY
+             ADD cumulative_recovered_age_5 (any) OPT ANY
+             ADD cumulative_recovered_age_6 (any) OPT ANY
+             ADD cumulative_recovered_age_7 (any) OPT ANY
+             ADD cumulative_recovered_age_8 (any) OPT ANY
+             ADD cumulative_recovered_age_9 (any) OPT ANY
+             ADD new_recovered_male (any) OPT ANY
+             ADD new_recovered_female (any) OPT ANY
+             ADD cumulative_recovered_male (any) OPT ANY
+             ADD cumulative_recovered_female (any) OPT ANY
+             ADD locality_code (any) OPT ANY
+             ADD locality_name (any) OPT ANY
+             ADD new_ventilator_patients (any) OPT ANY
+             ADD cumulative_ventilator_patients (any) OPT ANY
+             ADD new_persons_vaccinated_pfizer (any) OPT ANY
+             ADD cumulative_persons_vaccinated_pfizer (any) OPT ANY
+             ADD new_persons_fully_vaccinated_pfizer (any) OPT ANY
+             ADD cumulative_persons_fully_vaccinated_pfizer (any) OPT ANY
+             ADD new_persons_vaccinated_moderna (any) OPT ANY
+             ADD cumulative_persons_vaccinated_moderna (any) OPT ANY
+             ADD new_persons_fully_vaccinated_moderna (any) OPT ANY
+             ADD cumulative_persons_fully_vaccinated_moderna (any) OPT ANY
+             ADD new_persons_vaccinated_janssen (any) OPT ANY
+             ADD cumulative_persons_vaccinated_janssen (any) OPT ANY
+             ADD new_persons_fully_vaccinated_janssen (any) OPT ANY
+             ADD cumulative_persons_fully_vaccinated_janssen (any) OPT ANY
+             ADD new_persons_vaccinated_sinovac (any) OPT ANY
+             ADD total_persons_vaccinated_sinovac (any) OPT ANY
+             ADD new_vaccine_doses_administered_pfizer (any) OPT ANY
+             ADD cumulative_vaccine_doses_administered_pfizer (any) OPT ANY
+             ADD new_vaccine_doses_administered_moderna (any) OPT ANY
+             ADD cumulative_vaccine_doses_administered_moderna (any) OPT ANY
+             ADD new_vaccine_doses_administered_janssen (any) OPT ANY
+             ADD cumulative_vaccine_doses_administered_janssen (any) OPT ANY
+        )
+        OUTPUTLIST (adult_female_mortality_rate, adult_male_mortality_rate, age_bin_0, age_bin_1, age_bin_2, age_bin_3, age_bin_4, age_bin_5, age_bin_6, age_bin_7, age_bin_8, age_bin_9, aggregation_level, area_rural_sq_km, area_sq_km, area_urban_sq_km, average_temperature_celsius, cancel_public_events, comorbidity_mortality_rate, contact_tracing, country_code, country_name, cumulative_confirmed, cumulative_confirmed_age_0, cumulative_confirmed_age_1, cumulative_confirmed_age_2, cumulative_confirmed_age_3, cumulative_confirmed_age_4, cumulative_confirmed_age_5, cumulative_confirmed_age_6, cumulative_confirmed_age_7, cumulative_confirmed_age_8, cumulative_confirmed_age_9, cumulative_confirmed_female, cumulative_confirmed_male, cumulative_deceased, cumulative_deceased_age_0, cumulative_deceased_age_1, cumulative_deceased_age_2, cumulative_deceased_age_3, cumulative_deceased_age_4, cumulative_deceased_age_5, cumulative_deceased_age_6, cumulative_deceased_age_7, cumulative_deceased_age_8, cumulative_deceased_age_9, cumulative_deceased_female, cumulative_deceased_male, cumulative_hospitalized_patients, cumulative_hospitalized_patients_age_0, cumulative_hospitalized_patients_age_1, cumulative_hospitalized_patients_age_2, cumulative_hospitalized_patients_age_3, cumulative_hospitalized_patients_age_4, cumulative_hospitalized_patients_age_5, cumulative_hospitalized_patients_age_6, cumulative_hospitalized_patients_age_7, cumulative_hospitalized_patients_age_8, cumulative_hospitalized_patients_age_9, cumulative_hospitalized_patients_female, cumulative_hospitalized_patients_male, cumulative_intensive_care_patients, cumulative_intensive_care_patients_age_0, cumulative_intensive_care_patients_age_1, cumulative_intensive_care_patients_age_2, cumulative_intensive_care_patients_age_3, cumulative_intensive_care_patients_age_4, cumulative_intensive_care_patients_age_5, cumulative_intensive_care_patients_age_6, cumulative_intensive_care_patients_age_7, cumulative_intensive_care_patients_age_8, cumulative_intensive_care_patients_age_9, cumulative_intensive_care_patients_female, cumulative_intensive_care_patients_male, cumulative_persons_fully_vaccinated, cumulative_persons_fully_vaccinated_janssen, cumulative_persons_fully_vaccinated_moderna, cumulative_persons_fully_vaccinated_pfizer, cumulative_persons_vaccinated, cumulative_persons_vaccinated_janssen, cumulative_persons_vaccinated_moderna, cumulative_persons_vaccinated_pfizer, cumulative_recovered, cumulative_recovered_age_0, cumulative_recovered_age_1, cumulative_recovered_age_2, cumulative_recovered_age_3, cumulative_recovered_age_4, cumulative_recovered_age_5, cumulative_recovered_age_6, cumulative_recovered_age_7, cumulative_recovered_age_8, cumulative_recovered_age_9, cumulative_recovered_female, cumulative_recovered_male, cumulative_tested, cumulative_tested_age_0, cumulative_tested_age_1, cumulative_tested_age_2, cumulative_tested_age_3, cumulative_tested_age_4, cumulative_tested_age_5, cumulative_tested_age_6, cumulative_tested_age_7, cumulative_tested_age_8, cumulative_tested_age_9, cumulative_tested_female, cumulative_tested_male, cumulative_vaccine_doses_administered, cumulative_vaccine_doses_administered_janssen, cumulative_vaccine_doses_administered_moderna, cumulative_vaccine_doses_administered_pfizer, cumulative_ventilator_patients, current_hospitalized_patients, current_intensive_care_patients, current_ventilator_patients, datacommons_id, date, debt_relief, dew_point, diabetes_prevalence, elevation_m, emergency_investment_in_healthcare, facial_coverings, fiscal_measures, gdp_per_capita_usd, gdp_usd, health_expenditure_usd, hospital_beds_per_1000, human_capital_index, human_development_index, income_support, infant_mortality_rate, international_support, international_travel_controls, investment_in_vaccines, iso_3166_1_alpha_2, iso_3166_1_alpha_3, latitude, life_expectancy, locality_code, locality_name, location_key, longitude, maximum_temperature_celsius, minimum_temperature_celsius, mobility_grocery_and_pharmacy, mobility_parks, mobility_residential, mobility_retail_and_recreation, mobility_transit_stations, mobility_workplaces, new_confirmed, new_confirmed_age_0, new_confirmed_age_1, new_confirmed_age_2, new_confirmed_age_3, new_confirmed_age_4, new_confirmed_age_5, new_confirmed_age_6, new_confirmed_age_7, new_confirmed_age_8, new_confirmed_age_9, new_confirmed_female, new_confirmed_male, new_deceased, new_deceased_age_0, new_deceased_age_1, new_deceased_age_2, new_deceased_age_3, new_deceased_age_4, new_deceased_age_5, new_deceased_age_6, new_deceased_age_7, new_deceased_age_8, new_deceased_age_9, new_deceased_female, new_deceased_male, new_hospitalized_patients, new_hospitalized_patients_age_0, new_hospitalized_patients_age_1, new_hospitalized_patients_age_2, new_hospitalized_patients_age_3, new_hospitalized_patients_age_4, new_hospitalized_patients_age_5, new_hospitalized_patients_age_6, new_hospitalized_patients_age_7, new_hospitalized_patients_age_8, new_hospitalized_patients_age_9, new_hospitalized_patients_female, new_hospitalized_patients_male, new_intensive_care_patients, new_intensive_care_patients_age_0, new_intensive_care_patients_age_1, new_intensive_care_patients_age_2, new_intensive_care_patients_age_3, new_intensive_care_patients_age_4, new_intensive_care_patients_age_5, new_intensive_care_patients_age_6, new_intensive_care_patients_age_7, new_intensive_care_patients_age_8, new_intensive_care_patients_age_9, new_intensive_care_patients_female, new_intensive_care_patients_male, new_persons_fully_vaccinated, new_persons_fully_vaccinated_janssen, new_persons_fully_vaccinated_moderna, new_persons_fully_vaccinated_pfizer, new_persons_vaccinated, new_persons_vaccinated_janssen, new_persons_vaccinated_moderna, new_persons_vaccinated_pfizer, new_persons_vaccinated_sinovac, new_recovered, new_recovered_age_0, new_recovered_age_1, new_recovered_age_2, new_recovered_age_3, new_recovered_age_4, new_recovered_age_5, new_recovered_age_6, new_recovered_age_7, new_recovered_age_8, new_recovered_age_9, new_recovered_female, new_recovered_male, new_tested, new_tested_age_0, new_tested_age_1, new_tested_age_2, new_tested_age_3, new_tested_age_4, new_tested_age_5, new_tested_age_6, new_tested_age_7, new_tested_age_8, new_tested_age_9, new_tested_female, new_tested_male, new_vaccine_doses_administered, new_vaccine_doses_administered_janssen, new_vaccine_doses_administered_moderna, new_vaccine_doses_administered_pfizer, new_ventilator_patients, nurses_per_1000, openstreetmap_id, out_of_pocket_health_expenditure_usd, physicians_per_1000, place_id, pollution_mortality_rate, population, population_age_00_09, population_age_10_19, population_age_20_29, population_age_30_39, population_age_40_49, population_age_50_59, population_age_60_69, population_age_70_79, population_age_80_and_older, population_clustered, population_density, population_female, population_largest_city, population_male, population_rural, population_urban, public_information_campaigns, public_transport_closing, rainfall_mm, relative_humidity, restrictions_on_gatherings, restrictions_on_internal_movement, school_closing, search_trends_abdominal_obesity, search_trends_abdominal_pain, search_trends_acne, search_trends_actinic_keratosis, search_trends_acute_bronchitis, search_trends_adrenal_crisis, search_trends_ageusia, search_trends_alcoholism, search_trends_allergic_conjunctivitis, search_trends_allergy, search_trends_amblyopia, search_trends_amenorrhea, search_trends_amnesia, search_trends_anal_fissure, search_trends_anaphylaxis, search_trends_anemia, search_trends_angina_pectoris, search_trends_angioedema, search_trends_angular_cheilitis, search_trends_anosmia, search_trends_anxiety, search_trends_aphasia, search_trends_aphonia, search_trends_apnea, search_trends_arthralgia, search_trends_arthritis, search_trends_ascites, search_trends_asperger_syndrome, search_trends_asphyxia, search_trends_asthma, search_trends_astigmatism, search_trends_ataxia, search_trends_atheroma, search_trends_attention_deficit_hyperactivity_disorder, search_trends_auditory_hallucination, search_trends_autoimmune_disease, search_trends_avoidant_personality_disorder, search_trends_back_pain, search_trends_bacterial_vaginosis, search_trends_balance_disorder, search_trends_beaus_lines, search_trends_bells_palsy, search_trends_biliary_colic, search_trends_binge_eating, search_trends_bleeding, search_trends_bleeding_on_probing, search_trends_blepharospasm, search_trends_bloating, search_trends_blood_in_stool, search_trends_blurred_vision, search_trends_blushing, search_trends_boil, search_trends_bone_fracture, search_trends_bone_tumor, search_trends_bowel_obstruction, search_trends_bradycardia, search_trends_braxton_hicks_contractions, search_trends_breakthrough_bleeding, search_trends_breast_pain, search_trends_bronchitis, search_trends_bruise, search_trends_bruxism, search_trends_bunion, search_trends_burn, search_trends_burning_chest_pain, search_trends_burning_mouth_syndrome, search_trends_candidiasis, search_trends_canker_sore, search_trends_cardiac_arrest, search_trends_carpal_tunnel_syndrome, search_trends_cataplexy, search_trends_cataract, search_trends_chancre, search_trends_cheilitis, search_trends_chest_pain, search_trends_chills, search_trends_chorea, search_trends_chronic_pain, search_trends_cirrhosis, search_trends_cleft_lip_and_cleft_palate, search_trends_clouding_of_consciousness, search_trends_cluster_headache, search_trends_colitis, search_trends_coma, search_trends_common_cold, search_trends_compulsive_behavior, search_trends_compulsive_hoarding, search_trends_confusion, search_trends_congenital_heart_defect, search_trends_conjunctivitis, search_trends_constipation, search_trends_convulsion, search_trends_cough, search_trends_crackles, search_trends_cramp, search_trends_crepitus, search_trends_croup, search_trends_cyanosis, search_trends_dandruff, search_trends_delayed_onset_muscle_soreness, search_trends_dementia, search_trends_dentin_hypersensitivity, search_trends_depersonalization, search_trends_depression, search_trends_dermatitis, search_trends_desquamation, search_trends_developmental_disability, search_trends_diabetes, search_trends_diabetic_ketoacidosis, search_trends_diarrhea, search_trends_dizziness, search_trends_dry_eye_syndrome, search_trends_dysautonomia, search_trends_dysgeusia, search_trends_dysmenorrhea, search_trends_dyspareunia, search_trends_dysphagia, search_trends_dysphoria, search_trends_dystonia, search_trends_dysuria, search_trends_ear_pain, search_trends_eczema, search_trends_edema, search_trends_encephalitis, search_trends_encephalopathy, search_trends_epidermoid_cyst, search_trends_epilepsy, search_trends_epiphora, search_trends_erectile_dysfunction, search_trends_erythema, search_trends_erythema_chronicum_migrans, search_trends_esophagitis, search_trends_excessive_daytime_sleepiness, search_trends_eye_pain, search_trends_eye_strain, search_trends_facial_nerve_paralysis, search_trends_facial_swelling, search_trends_fasciculation, search_trends_fatigue, search_trends_fatty_liver_disease, search_trends_fecal_incontinence, search_trends_fever, search_trends_fibrillation, search_trends_fibrocystic_breast_changes, search_trends_fibromyalgia, search_trends_flatulence, search_trends_floater, search_trends_focal_seizure, search_trends_folate_deficiency, search_trends_food_craving, search_trends_food_intolerance, search_trends_frequent_urination, search_trends_gastroesophageal_reflux_disease, search_trends_gastroparesis, search_trends_generalized_anxiety_disorder, search_trends_genital_wart, search_trends_gingival_recession, search_trends_gingivitis, search_trends_globus_pharyngis, search_trends_goitre, search_trends_gout, search_trends_grandiosity, search_trends_granuloma, search_trends_guilt, search_trends_hair_loss, search_trends_halitosis, search_trends_hay_fever, search_trends_headache, search_trends_heart_arrhythmia, search_trends_heart_murmur, search_trends_heartburn, search_trends_hematochezia, search_trends_hematoma, search_trends_hematuria, search_trends_hemolysis, search_trends_hemoptysis, search_trends_hemorrhoids, search_trends_hepatic_encephalopathy, search_trends_hepatitis, search_trends_hepatotoxicity, search_trends_hiccup, search_trends_hip_pain, search_trends_hives, search_trends_hot_flash, search_trends_hydrocephalus, search_trends_hypercalcaemia, search_trends_hypercapnia, search_trends_hypercholesterolemia, search_trends_hyperemesis_gravidarum, search_trends_hyperglycemia, search_trends_hyperhidrosis, search_trends_hyperkalemia, search_trends_hyperlipidemia, search_trends_hypermobility, search_trends_hyperpigmentation, search_trends_hypersomnia, search_trends_hypertension, search_trends_hyperthermia, search_trends_hyperthyroidism, search_trends_hypertriglyceridemia, search_trends_hypertrophy, search_trends_hyperventilation, search_trends_hypocalcaemia, search_trends_hypochondriasis, search_trends_hypoglycemia, search_trends_hypogonadism, search_trends_hypokalemia, search_trends_hypomania, search_trends_hyponatremia, search_trends_hypotension, search_trends_hypothyroidism, search_trends_hypoxemia, search_trends_hypoxia, search_trends_impetigo, search_trends_implantation_bleeding, search_trends_impulsivity, search_trends_indigestion, search_trends_infection, search_trends_inflammation, search_trends_inflammatory_bowel_disease, search_trends_ingrown_hair, search_trends_insomnia, search_trends_insulin_resistance, search_trends_intermenstrual_bleeding, search_trends_intracranial_pressure, search_trends_iron_deficiency, search_trends_irregular_menstruation, search_trends_itch, search_trends_jaundice, search_trends_kidney_failure, search_trends_kidney_stone, search_trends_knee_pain, search_trends_kyphosis, search_trends_lactose_intolerance, search_trends_laryngitis, search_trends_leg_cramps, search_trends_lesion, search_trends_leukorrhea, search_trends_lightheadedness, search_trends_low_back_pain, search_trends_low_grade_fever, search_trends_lymphedema, search_trends_major_depressive_disorder, search_trends_malabsorption, search_trends_male_infertility, search_trends_manic_disorder, search_trends_melasma, search_trends_melena, search_trends_meningitis, search_trends_menorrhagia, search_trends_middle_back_pain, search_trends_migraine, search_trends_milium, search_trends_mitral_insufficiency, search_trends_mood_disorder, search_trends_mood_swing, search_trends_morning_sickness, search_trends_motion_sickness, search_trends_mouth_ulcer, search_trends_muscle_atrophy, search_trends_muscle_weakness, search_trends_myalgia, search_trends_mydriasis, search_trends_myocardial_infarction, search_trends_myoclonus, search_trends_nasal_congestion, search_trends_nasal_polyp, search_trends_nausea, search_trends_neck_mass, search_trends_neck_pain, search_trends_neonatal_jaundice, search_trends_nerve_injury, search_trends_neuralgia, search_trends_neutropenia, search_trends_night_sweats, search_trends_night_terror, search_trends_nocturnal_enuresis, search_trends_nodule, search_trends_nosebleed, search_trends_nystagmus, search_trends_obesity, search_trends_onychorrhexis, search_trends_oral_candidiasis, search_trends_orthostatic_hypotension, search_trends_osteopenia, search_trends_osteophyte, search_trends_osteoporosis, search_trends_otitis, search_trends_otitis_externa, search_trends_otitis_media, search_trends_pain, search_trends_palpitations, search_trends_pancreatitis, search_trends_panic_attack, search_trends_papule, search_trends_paranoia, search_trends_paresthesia, search_trends_pelvic_inflammatory_disease, search_trends_pericarditis, search_trends_periodontal_disease, search_trends_periorbital_puffiness, search_trends_peripheral_neuropathy, search_trends_perspiration, search_trends_petechia, search_trends_phlegm, search_trends_photodermatitis, search_trends_photophobia, search_trends_photopsia, search_trends_pleural_effusion, search_trends_pleurisy, search_trends_pneumonia, search_trends_podalgia, search_trends_polycythemia, search_trends_polydipsia, search_trends_polyneuropathy, search_trends_polyuria, search_trends_poor_posture, search_trends_post_nasal_drip, search_trends_postural_orthostatic_tachycardia_syndrome, search_trends_prediabetes, search_trends_proteinuria, search_trends_pruritus_ani, search_trends_psychosis, search_trends_ptosis, search_trends_pulmonary_edema, search_trends_pulmonary_hypertension, search_trends_purpura, search_trends_pus, search_trends_pyelonephritis, search_trends_radiculopathy, search_trends_rectal_pain, search_trends_rectal_prolapse, search_trends_red_eye, search_trends_renal_colic, search_trends_restless_legs_syndrome, search_trends_rheum, search_trends_rhinitis, search_trends_rhinorrhea, search_trends_rosacea, search_trends_round_ligament_pain, search_trends_rumination, search_trends_scar, search_trends_sciatica, search_trends_scoliosis, search_trends_seborrheic_dermatitis, search_trends_self_harm, search_trends_sensitivity_to_sound, search_trends_sexual_dysfunction, search_trends_shallow_breathing, search_trends_sharp_pain, search_trends_shivering, search_trends_shortness_of_breath, search_trends_shyness, search_trends_sinusitis, search_trends_skin_condition, search_trends_skin_rash, search_trends_skin_tag, search_trends_skin_ulcer, search_trends_sleep_apnea, search_trends_sleep_deprivation, search_trends_sleep_disorder, search_trends_snoring, search_trends_sore_throat, search_trends_spasticity, search_trends_splenomegaly, search_trends_sputum, search_trends_stomach_rumble, search_trends_strabismus, search_trends_stretch_marks, search_trends_stridor, search_trends_stroke, search_trends_stuttering, search_trends_subdural_hematoma, search_trends_suicidal_ideation, search_trends_swelling, search_trends_swollen_feet, search_trends_swollen_lymph_nodes, search_trends_syncope, search_trends_tachycardia, search_trends_tachypnea, search_trends_telangiectasia, search_trends_tenderness, search_trends_testicular_pain, search_trends_throat_irritation, search_trends_thrombocytopenia, search_trends_thyroid_nodule, search_trends_tic, search_trends_tinnitus, search_trends_tonsillitis, search_trends_toothache, search_trends_tremor, search_trends_trichoptilosis, search_trends_tumor, search_trends_type_2_diabetes, search_trends_unconsciousness, search_trends_underweight, search_trends_upper_respiratory_tract_infection, search_trends_urethritis, search_trends_urinary_incontinence, search_trends_urinary_tract_infection, search_trends_urinary_urgency, search_trends_uterine_contraction, search_trends_vaginal_bleeding, search_trends_vaginal_discharge, search_trends_vaginitis, search_trends_varicose_veins, search_trends_vasculitis, search_trends_ventricular_fibrillation, search_trends_ventricular_tachycardia, search_trends_vertigo, search_trends_viral_pneumonia, search_trends_visual_acuity, search_trends_vomiting, search_trends_wart, search_trends_water_retention, search_trends_weakness, search_trends_weight_gain, search_trends_wheeze, search_trends_xeroderma, search_trends_xerostomia, search_trends_yawn, smoking_prevalence, snowfall_mm, stay_at_home_requirements, stringency_index, subregion1_code, subregion1_name, subregion2_code, subregion2_name, testing_policy, total_persons_vaccinated_sinovac, vaccination_policy, wikidata_id, workplace_closing
+        )
+        WRAPPER (df bn_covid_aggregated)
+    );
+

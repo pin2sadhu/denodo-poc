@@ -1,0 +1,7 @@
+﻿/databases/denodo_poc/folder.base view/base view.vql
+/tags/zone.vql
+/tags/location.vql
+/tags/customer_info.vql
+/databases/denodo_poc/folder.data source/data source.vql
+/databases/denodo_poc/folder.data source/datasources/df/sample_superstore.vql
+/databases/denodo_poc/folder.base view/views/bv_sample_superstore.vql

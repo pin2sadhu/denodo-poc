@@ -1,0 +1,8 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF covid_index
+    FOLDER = '/data source'
+    ROUTE LOCAL 'LocalConnection' '${databases.denodo_poc.folder.data source.datasources.df.covid_index.ROUTE.LOCAL.PATH}'
+    COLUMNDELIMITER = ','
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = TRUE;
+

@@ -1,0 +1,36 @@
+﻿CREATE OR REPLACE WRAPPER DF bv_covid_economy
+    FOLDER = '/base view'
+    DATASOURCENAME=covid_economy
+    OUTPUTSCHEMA (
+        location_key = 'location_key' (OPT),
+        gdp_usd = 'gdp_usd' (OPT),
+        gdp_per_capita_usd = 'gdp_per_capita_usd' (OPT),
+        human_capital_index = 'human_capital_index' (OPT)
+    );
+
+CREATE OR REPLACE TABLE bv_covid_economy I18N us_pst (
+        location_key:text,
+        gdp_usd:text,
+        gdp_per_capita_usd:text,
+        human_capital_index:text
+    )
+    FOLDER = '/base view'
+    PRIMARY KEY ( 'location_key' )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_covid_economy(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD location_key (any) OPT ANY
+             ADD gdp_usd (any) OPT ANY
+             ADD gdp_per_capita_usd (any) OPT ANY
+             ADD human_capital_index (any) OPT ANY
+        )
+        OUTPUTLIST (gdp_per_capita_usd, gdp_usd, human_capital_index, location_key
+        )
+        WRAPPER (df bv_covid_economy)
+    )
+    DECLARE CACHE INDEX cache_index_location UNIQUE  ON (location_key)
+    ATCACHE_THROUGH_VDP_ONLY;
+

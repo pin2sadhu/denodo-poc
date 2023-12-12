@@ -1,0 +1,30 @@
+﻿CREATE OR REPLACE WRAPPER DF sample_superstore_return
+    FOLDER = '/base view'
+    DATASOURCENAME=sample_superstore_return
+    OUTPUTSCHEMA (
+        returned = 'Returned' (OPT),
+        orderid = 'Order ID' (OPT)
+    );
+
+CREATE OR REPLACE TABLE bv_sample_superstore_return I18N us_pst (
+        returned:text,
+        orderid:text
+    )
+    FOLDER = '/base view'
+    PRIMARY KEY ( 'orderid' )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD sample_superstore_return(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD returned (any) OPT ANY
+             ADD orderid (any) OPT ANY
+        )
+        OUTPUTLIST (orderid, returned
+        )
+        WRAPPER (df sample_superstore_return)
+    )
+    DECLARE VIEW CLUSTER INDEX order_id_index PRIMARY  UNIQUE  ON (orderid ASC)
+    ATSOURCE_THROUGH_VDP_ONLY;
+

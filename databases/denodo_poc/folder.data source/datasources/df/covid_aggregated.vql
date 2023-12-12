@@ -1,0 +1,8 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF covid_aggregated
+    FOLDER = '/data source'
+    ROUTE LOCAL 'LocalConnection' '${databases.denodo_poc.folder.data source.datasources.df.covid_aggregated.ROUTE.LOCAL.PATH}' FILTER (GUNZIP )
+    COLUMNDELIMITER = ','
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = TRUE;
+

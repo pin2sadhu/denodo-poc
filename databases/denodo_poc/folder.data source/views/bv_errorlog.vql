@@ -1,0 +1,54 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC errorlog
+    FOLDER = '/data source'
+    DATASOURCENAME=ds_denodo_sql_server_azure
+    CATALOGNAME='${databases.denodo_poc.folder.data source.views.jdbc.errorlog.CATALOGNAME}' ESCAPE
+    SCHEMANAME='${databases.denodo_poc.folder.data source.views.jdbc.errorlog.SCHEMANAME}' 
+    RELATIONNAME='ErrorLog' 
+    OUTPUTSCHEMA (
+        errorlogid = 'ErrorLogID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int identity')  NOT NULL SORTABLE IS_AUTOINCREMENT,
+        errortime = 'ErrorTime' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  NOT NULL SORTABLE,
+        username = 'UserName' :'java.lang.String' (OPT) (sourcetypesize='128', sourcetypeid='-9', sourcetypename='sysname')  NOT NULL NOT SORTABLE,
+        errornumber = 'ErrorNumber' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  NOT NULL SORTABLE,
+        errorseverity = 'ErrorSeverity' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        errorstate = 'ErrorState' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        errorprocedure = 'ErrorProcedure' :'java.lang.String' (OPT) (sourcetypesize='126', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        errorline = 'ErrorLine' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        errormessage = 'ErrorMessage' :'java.lang.String' (OPT) (sourcetypesize='4000', sourcetypeid='-9', sourcetypename='nvarchar')  NOT NULL SORTABLE
+    )
+    CONSTRAINT 'PK_ErrorLog_ErrorLogID' PRIMARY KEY ( 'ErrorLogID' )
+    INDEX 'PK_ErrorLog_ErrorLogID' CLUSTER UNIQUE PRIMARY ( 'ErrorLogID' );
+
+CREATE OR REPLACE TABLE bv_errorlog I18N us_pst (
+        errorlogid:int (notnull, autoincrement, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        errortime:timestamp (notnull, sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
+        username:text (notnull, sourcetypeid = '-9', sourcetypesize = '128'),
+        errornumber:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        errorseverity:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        errorstate:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        errorprocedure:text (sourcetypeid = '-9', sourcetypesize = '126'),
+        errorline:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        errormessage:text (notnull, sourcetypeid = '-9', sourcetypesize = '4000')
+    )
+    FOLDER = '/data source'
+    CONSTRAINT 'PK_ErrorLog_ErrorLogID' PRIMARY KEY ( 'errorlogid' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD errorlog(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD errorlogid (any) OPT ANY
+             ADD errortime (any) OPT ANY
+             ADD username (any) OPT ANY
+             ADD errornumber (any) OPT ANY
+             ADD errorseverity (any) OPT ANY
+             ADD errorstate (any) OPT ANY
+             ADD errorprocedure (any) OPT ANY
+             ADD errorline (any) OPT ANY
+             ADD errormessage (any) OPT ANY
+        )
+        OUTPUTLIST (errorline, errorlogid, errormessage, errornumber, errorprocedure, errorseverity, errorstate, errortime, username
+        )
+        WRAPPER (jdbc errorlog)
+    );
+

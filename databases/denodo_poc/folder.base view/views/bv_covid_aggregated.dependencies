@@ -1,0 +1,5 @@
+﻿/databases/denodo_poc/folder.base view/base view.vql
+/tags/critical.vql
+/tags/technical_view.vql
+/databases/denodo_poc/folder.data source/data source.vql
+/databases/denodo_poc/folder.data source/datasources/df/covid_aggregated.vql

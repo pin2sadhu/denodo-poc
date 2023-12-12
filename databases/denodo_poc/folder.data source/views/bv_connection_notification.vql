@@ -1,0 +1,84 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC connection_notification
+    FOLDER = '/data source'
+    DATASOURCENAME=ds_denodo_sql_server_azure
+    CATALOGNAME='${databases.denodo_poc.folder.data source.views.jdbc.connection_notification.CATALOGNAME}' ESCAPE
+    SCHEMANAME='${databases.denodo_poc.folder.data source.views.jdbc.connection_notification.SCHEMANAME}' 
+    RELATIONNAME='connection_notification' 
+    OUTPUTSCHEMA (
+        autoincrementid = 'autoincrementid' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='-5', sourcetypename='bigint identity')  NOT NULL SORTABLE IS_AUTOINCREMENT,
+        servername = 'servername' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        host = 'host' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        port = 'port' :'java.lang.String' (OPT) (sourcetypesize='10', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        notificationtype = 'notificationtype' :'java.lang.String' (OPT) (sourcetypesize='30', sourcetypeid='12', sourcetypename='varchar')  NOT NULL SORTABLE,
+        connectionid = 'connectionid' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='-5', sourcetypename='bigint')  NOT NULL SORTABLE,
+        connectionstarttime = 'connectionstarttime' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime2')  SORTABLE,
+        connectionendtime = 'connectionendtime' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime2')  SORTABLE,
+        sessionid = 'sessionid' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='-5', sourcetypename='bigint')  NOT NULL SORTABLE,
+        sessionstarttime = 'sessionstarttime' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime2')  SORTABLE,
+        sessionendtime = 'sessionendtime' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime2')  SORTABLE,
+        databasename = 'databasename' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        username = 'username' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        accessinterface = 'accessinterface' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        useragent = 'useragent' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        clientip = 'clientip' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        intermediateclientip = 'intermediateclientip' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        jmsqueuename = 'jmsqueuename' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        webservicename = 'webservicename' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  SORTABLE
+    )
+    CONSTRAINT 'PK__connecti__A8AA2296E8AD0A67' PRIMARY KEY ( 'autoincrementid' )
+    INDEX 'PK__connecti__A8AA2296E8AD0A67' CLUSTER UNIQUE PRIMARY ( 'autoincrementid' );
+
+CREATE OR REPLACE TABLE bv_connection_notification I18N us_pst (
+        autoincrementid:long (notnull, autoincrement, sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19'),
+        servername:text (sourcetypeid = '12', sourcetypesize = '100'),
+        host:text (sourcetypeid = '12', sourcetypesize = '100'),
+        port:text (sourcetypeid = '12', sourcetypesize = '10'),
+        notificationtype:text (notnull, sourcetypeid = '12', sourcetypesize = '30'),
+        connectionid:long (notnull, sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19'),
+        connectionstarttime:timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
+        connectionendtime:timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
+        sessionid:long (notnull, sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19'),
+        sessionstarttime:timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
+        sessionendtime:timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
+        databasename:text (sourcetypeid = '12', sourcetypesize = '100'),
+        username:text (sourcetypeid = '12', sourcetypesize = '100'),
+        accessinterface:text (sourcetypeid = '12', sourcetypesize = '100'),
+        useragent:text (sourcetypeid = '12', sourcetypesize = '100'),
+        clientip:text (sourcetypeid = '12', sourcetypesize = '50'),
+        intermediateclientip:text (sourcetypeid = '12', sourcetypesize = '50'),
+        jmsqueuename:text (sourcetypeid = '12', sourcetypesize = '100'),
+        webservicename:text (sourcetypeid = '12', sourcetypesize = '100')
+    )
+    FOLDER = '/data source'
+    CONSTRAINT 'PK__connecti__A8AA2296E8AD0A67' PRIMARY KEY ( 'autoincrementid' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD connection_notification(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD autoincrementid (any) OPT ANY
+             ADD servername (any) OPT ANY
+             ADD host (any) OPT ANY
+             ADD port (any) OPT ANY
+             ADD notificationtype (any) OPT ANY
+             ADD connectionid (any) OPT ANY
+             ADD connectionstarttime (any) OPT ANY
+             ADD connectionendtime (any) OPT ANY
+             ADD sessionid (any) OPT ANY
+             ADD sessionstarttime (any) OPT ANY
+             ADD sessionendtime (any) OPT ANY
+             ADD databasename (any) OPT ANY
+             ADD username (any) OPT ANY
+             ADD accessinterface (any) OPT ANY
+             ADD useragent (any) OPT ANY
+             ADD clientip (any) OPT ANY
+             ADD intermediateclientip (any) OPT ANY
+             ADD jmsqueuename (any) OPT ANY
+             ADD webservicename (any) OPT ANY
+        )
+        OUTPUTLIST (accessinterface, autoincrementid, clientip, connectionendtime, connectionid, connectionstarttime, databasename, host, intermediateclientip, jmsqueuename, notificationtype, port, servername, sessionendtime, sessionid, sessionstarttime, useragent, username, webservicename
+        )
+        WRAPPER (jdbc connection_notification)
+    );
+
