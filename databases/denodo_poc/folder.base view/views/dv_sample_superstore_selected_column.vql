@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW dv_sample_superstore_selected_column FOLDER = '/base view' AS SELECT bv_sample_superstore.rowid AS rowid, bv_sample_superstore.orderid AS orderid, bv_sample_superstore.customerid AS customerid, bv_sample_superstore.customername AS customername, bv_sample_superstore.segment AS segment, bv_sample_superstore.country AS country, bv_sample_superstore.city AS city, bv_sample_superstore.state AS state, bv_sample_superstore.postalcode AS postalcode, bv_sample_superstore.region AS region, bv_sample_superstore.profit AS profit, 1 AS vcs_demo FROM bv_sample_superstore;
+
+ALTER VIEW dv_sample_superstore_selected_column
+ LAYOUT (bv_sample_superstore = [0, 0, 200, 200]);
+
